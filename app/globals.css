@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/*
+ * TOKENS DE TEMA — La Mochilera · Casa de Cuero
+ *
+ * Paleta oficial (Guía de Marca):
+ *   Primarios:   #847c1f oliva dorado · #565113 oliva oscuro · #2a321b verde bosque
+ *                #f6f3e4 crema · #e6dec8 beige
+ *   Secundarios: #3c240f café oscuro · #614b32 café · #000000 · #ffffff
+ *
+ * Contraste verificado (WCAG 2.1 AA):
+ *   café oscuro / crema 13:1 · café / crema 7.4:1 · oliva oscuro / crema 7.3:1
+ *   crema / verde bosque 12:1 · oliva dorado / crema 3.9:1 → solo texto grande,
+ *   íconos y detalles, nunca texto chico.
+ *
+ * Los componentes solo usan estos tokens: cambiar un color es editar este bloque.
+ */
+:root {
+  --radius: 0.25rem;
+
+  /* Alturas fijas del encabezado (el header se superpone al hero) */
+  --announcement-height: 2.5rem;
+  --header-height: 5rem;
+
+  /* Superficies y texto */
+  --background: #f6f3e4;
+  --foreground: #3c240f;
+  --card: #ffffff;
+  --card-foreground: #3c240f;
+  --popover: #f6f3e4;
+  --popover-foreground: #3c240f;
+  --muted: #e6dec8;
+  --muted-foreground: #614b32;
+
+  /* Acciones */
+  --primary: #2a321b;
+  --primary-foreground: #f6f3e4;
+  --secondary: #565113;
+  --secondary-foreground: #f6f3e4;
+  --accent: #e6dec8;
+  --accent-foreground: #3c240f;
+  /* Único color fuera de la guía: rojo funcional solo para errores de formularios */
+  --destructive: #9b2c1f;
+  --destructive-foreground: #ffffff;
+
+  /* Detalle de marca: líneas, íconos, insignias y títulos grandes */
+  --highlight: #847c1f;
+
+  /* Superficie oscura de marca (secciones de contraste, footer) */
+  --forest: #2a321b;
+  --forest-foreground: #f6f3e4;
+
+  /* Bordes y foco */
+  --border: #e6dec8;
+  --input: #614b32;
+  --ring: #847c1f;
+
+  /* Barra de anuncios */
+  --announcement: #2a321b;
+  --announcement-foreground: #f6f3e4;
+
+  /* Contenido sobre foto/video (hero, banners) */
+  --on-media: #f6f3e4;
+  /* Promedio de las sombras de las fotos de campaña (DSC04541/60/70) */
+  --overlay: #1c1a19;
+  --glass: rgb(42 50 27 / 0.35);
+  --glass-hover: rgb(132 124 31 / 0.6);
+  --glass-border: rgb(246 243 228 / 0.35);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-highlight: var(--highlight);
+  --color-forest: var(--forest);
+  --color-forest-foreground: var(--forest-foreground);
+  --color-announcement: var(--announcement);
+  --color-announcement-foreground: var(--announcement-foreground);
+  --color-on-media: var(--on-media);
+  --color-overlay: var(--overlay);
+  --color-glass: var(--glass);
+  --color-glass-hover: var(--glass-hover);
+  --color-glass-border: var(--glass-border);
+
+  /* Fuentes: las variables las define next/font en app/layout.tsx */
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+}
+
+@layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}
+
+/*
+ * Logo como máscara: el PNG oficial define la forma y el color sale de
+ * currentColor, así el mismo archivo sirve claro sobre video y oscuro sobre
+ * fondo crema.
+ */
+@layer components {
+  .logo-mask {
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-position: left center;
+    mask-size: contain;
+  }
+
+  .logo-horizontal {
+    mask-image: url("/brand/logo/logo-horizontal.png");
+    aspect-ratio: 1200 / 262;
+  }
+
+  .logo-isotipo {
+    mask-image: url("/brand/logo/isotipo.png");
+    aspect-ratio: 600 / 472;
+  }
+}
+
+/*
+ * Carrusel a sangre completa alineado con <Container>: el mismo margen como
+ * padding y como scroll-padding, para que el snap no pegue la primera
+ * tarjeta al borde.
+ */
+@layer components {
+  .carousel-track {
+    --carousel-gutter: 1.5rem;
+    padding-inline: var(--carousel-gutter);
+    scroll-padding-inline: var(--carousel-gutter);
+    scrollbar-width: none;
+
+    @media (width >= 48rem) {
+      --carousel-gutter: max(3rem, calc((100vw - 80rem) / 2 + 3rem));
+    }
+  }
+}
