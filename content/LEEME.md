@@ -18,7 +18,6 @@ Lo que hoy es relleno provisional está marcado con el comentario
 | El orden de "Más vendidos" | `productos.ts` | `bestSellerRank` (1 = el primero) |
 | El video o la foto del inicio | `inicio.ts` | `heroContent` (`video.mp4`, `posterImageUrl`) |
 | Título y texto del inicio | `inicio.ts` | `heroContent.title` y `description` |
-| Productos destacados del inicio | `inicio.ts` | `featuredProductCodes` |
 | Fotos o video de la galería "En el camino" | `inicio.ts` | `lifestyleGallery` |
 | Historia de la marca y foto del fundador | `inicio.ts` | `brandStory` |
 | Origen de cada material | `inicio.ts` | `ORIGIN_NOT_CONFIRMED` o el campo `origin` de cada uno |

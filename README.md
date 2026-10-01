@@ -31,7 +31,7 @@ Para SEO en producción, copiar `.env.example` a `.env.local` y poner el dominio
 
 - **Fase 1 — Planificación:** [docs/fase-1-planificacion.md](docs/fase-1-planificacion.md). Paleta, tipografía y logo aplicados desde la Guía de Marca.
 - **Fase 2 — Hero:** listo con la foto de campaña como póster; falta el video.
-- **Fase 3 — Inicio:** las 14 secciones implementadas. Donde falta material hay contenido provisional editable en `content/` (marcado `PROVISIONAL`).
+- **Fase 3 — Inicio:** inicio corto tipo "lobby": portada, historia, materiales y contacto. Galería, producto interactivo, Instagram, newsletter y barra de envíos viven en sus páginas (historia, artesanía, contacto, bitácora y tienda). Donde falta material hay contenido provisional editable en `content/` (marcado `PROVISIONAL`).
 - **Fase 4 — Catálogo y ficha de producto:** lista. Tienda con filtros, orden y "Cargar más" (`/tienda`), ficha con galería y zoom, tallas, guía de tallas y compra por WhatsApp (`/producto/…`).
 - **Fase 5 — Páginas internas:** listas con textos provisionales: historia, artesanía, bitácora (3 artículos), guías de tallas y cuidado, garantía, envíos, FAQ, contacto, legales, búsqueda, carrito, cuenta y 404.
 - **Fase 6 — Revisión final:** hecha. Accesibilidad y SEO 100 en Lighthouse, 0 violaciones de axe. Resultados y lista para publicar en [docs/fase-6-revision.md](docs/fase-6-revision.md).

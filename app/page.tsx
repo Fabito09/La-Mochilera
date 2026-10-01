@@ -1,21 +1,13 @@
 import { BrandPillars } from "@/components/home/brand-pillars";
 import { BrandStory } from "@/components/home/brand-story";
-import { CommunityInstagram } from "@/components/home/community-instagram";
-import { FeaturedCategories } from "@/components/home/featured-categories";
-import { FeaturedProducts } from "@/components/home/featured-products";
-import { JournalPreview } from "@/components/home/journal-preview";
-import { LifestyleGallery } from "@/components/home/lifestyle-gallery";
-import { MaterialsCarousel } from "@/components/home/materials-carousel";
-import { NewsletterSignup } from "@/components/home/newsletter-signup";
-import { ProductHotspots } from "@/components/home/product-hotspots";
-import { TrustBar } from "@/components/home/trust-bar";
+import { WhatsAppCta } from "@/components/page/whatsapp-cta";
 import { AnimatedHero } from "@/components/ui/animated-hero-section-1";
-import { heroContent } from "@/content/inicio";
+import { heroContent, homeContact } from "@/content/inicio";
 
-const PILLARS_SECTION_ID = "pilares";
+const STORY_SECTION_ID = "historia";
 
-// Orden de secciones definido en el brief (sección 6). La barra de anuncio,
-// el header y el footer vienen del layout raíz.
+// Inicio corto, como "lobby": portada, cómo nació la marca, lo que usamos en
+// cada par y contacto. El resto vive en su propia página (menú del header).
 export default function HomePage() {
   const { video } = heroContent;
 
@@ -28,19 +20,18 @@ export default function HomePage() {
         description={heroContent.description}
         ctaButton={heroContent.primaryCta}
         secondaryCta={heroContent.secondaryCta}
-        scrollTargetId={PILLARS_SECTION_ID}
+        scrollTargetId={STORY_SECTION_ID}
       />
-      <BrandPillars id={PILLARS_SECTION_ID} />
-      <FeaturedCategories />
-      <FeaturedProducts />
-      <MaterialsCarousel />
-      <ProductHotspots />
-      <LifestyleGallery />
-      <BrandStory />
-      <TrustBar />
-      <JournalPreview />
-      <CommunityInstagram />
-      <NewsletterSignup />
+      <BrandStory id={STORY_SECTION_ID} />
+      <BrandPillars
+        id="materiales"
+        callToAction={{ label: "Conocer nuestros materiales", href: "/artesania" }}
+      />
+      <WhatsAppCta
+        title={homeContact.title}
+        description={homeContact.description}
+        message={homeContact.whatsappMessage}
+      />
     </main>
   );
 }

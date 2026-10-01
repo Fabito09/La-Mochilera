@@ -1,26 +1,31 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/ui/fade-in";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { brandPillars } from "@/content/inicio";
+import { brandPillars, brandPillarsSection } from "@/content/inicio";
+import type { NavLink } from "@/content/navegacion";
 
 interface BrandPillarsProps {
   id: string;
+  /** Botón opcional al pie de la sección, p. ej. hacia Artesanía. */
+  callToAction?: NavLink;
 }
 
-export function BrandPillars({ id }: BrandPillarsProps) {
+export function BrandPillars({ id, callToAction }: BrandPillarsProps) {
   return (
     <section
       id={id}
-      aria-labelledby="pilares-titulo"
+      aria-labelledby={`${id}-titulo`}
       className="scroll-mt-(--header-height) py-24 md:py-32"
     >
       <Container>
         <SectionHeading
-          id="pilares-titulo"
-          eyebrow="Casa de Cuero"
-          title="Por qué elegir La Mochilera"
-          description="Tres compromisos que están en cada par que sale de nuestra casa."
+          id={`${id}-titulo`}
+          eyebrow={brandPillarsSection.eyebrow}
+          title={brandPillarsSection.title}
+          description={brandPillarsSection.description}
           align="center"
         />
         <ul className="mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
@@ -42,6 +47,13 @@ export function BrandPillars({ id }: BrandPillarsProps) {
             </li>
           ))}
         </ul>
+        {callToAction && (
+          <div className="mt-14 text-center">
+            <Button asChild size="lg" variant="outline" className="border-foreground bg-transparent">
+              <Link href={callToAction.href}>{callToAction.label}</Link>
+            </Button>
+          </div>
+        )}
       </Container>
     </section>
   );

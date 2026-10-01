@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, MapPin, MessageCircle, Truck } from "lucide-react";
 import { WhatsAppContactForm } from "@/components/contact/whatsapp-contact-form";
+import { CommunityInstagram } from "@/components/home/community-instagram";
 import { PageHeader } from "@/components/page/page-header";
 import { Container } from "@/components/ui/container";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
@@ -87,6 +88,7 @@ export default function ContactPage() {
           </div>
         </section>
       </Container>
+      <CommunityInstagram />
     </main>
   );
 }

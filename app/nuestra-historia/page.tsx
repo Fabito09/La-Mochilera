@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BrandPillars } from "@/components/home/brand-pillars";
+import { LifestyleGallery } from "@/components/home/lifestyle-gallery";
 import { ContentSections } from "@/components/page/content-sections";
 import { PageHeader } from "@/components/page/page-header";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,8 @@ export default function StoryPage() {
           </FadeIn>
         </Container>
       </section>
+
+      <LifestyleGallery />
 
       <BrandPillars id="valores" />
 

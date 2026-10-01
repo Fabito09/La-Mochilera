@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NewsletterSignup } from "@/components/home/newsletter-signup";
 import { ArticleCard } from "@/components/page/article-card";
 import { PageHeader } from "@/components/page/page-header";
 import { Container } from "@/components/ui/container";
@@ -30,6 +31,7 @@ export default function JournalPage() {
           ))}
         </ul>
       </Container>
+      <NewsletterSignup />
     </main>
   );
 }

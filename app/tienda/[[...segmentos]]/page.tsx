@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CatalogBrowser } from "@/components/catalog/catalog-browser";
+import { TrustBar } from "@/components/home/trust-bar";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -33,8 +34,8 @@ export default async function CatalogPage({ params }: PageProps<"/tienda/[[...se
   const hasProducts = catalogPage.products.length > 0;
 
   return (
-    <main className="pb-24 pt-10 md:pb-32">
-      <Container>
+    <main className="pt-10">
+      <Container className="pb-24 md:pb-32">
         <Breadcrumbs items={catalogPage.breadcrumbs} />
         <header className="mb-10 mt-8 max-w-2xl">
           <h1 className="font-display text-5xl leading-none md:text-6xl">{catalogPage.title}</h1>
@@ -58,6 +59,7 @@ export default async function CatalogPage({ params }: PageProps<"/tienda/[[...se
           </div>
         )}
       </Container>
+      <TrustBar />
     </main>
   );
 }

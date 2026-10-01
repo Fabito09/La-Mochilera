@@ -5,6 +5,7 @@
 // material de marca disponible, pensado para reemplazarse cuando llegue el
 // definitivo (buscar "PROVISIONAL" para encontrarlo todo).
 
+import { brandInfo } from "@/content/marca";
 import type { ImageAsset } from "@/lib/page-content";
 
 export interface HeroContent {
@@ -30,6 +31,12 @@ export const heroContent: HeroContent = {
   video: { mp4: "", webm: "" },
   primaryCta: { text: "Ver la colección", href: "/tienda" },
   secondaryCta: { text: "Nuestra historia", href: "/nuestra-historia" },
+};
+
+export const brandPillarsSection = {
+  eyebrow: "Materiales",
+  title: "Lo que usamos en cada par",
+  description: "Cuero natural, costuras reforzadas y suelas pensadas para el terreno.",
 };
 
 export interface BrandPillar {
@@ -64,47 +71,6 @@ export const brandPillars: BrandPillar[] = [
     image: {
       src: "/brand/detalles/suela.webp",
       alt: "Suela antideslizante con tacos de agarre vista desde abajo",
-    },
-  },
-];
-
-export interface ShaftCategory {
-  label: string;
-  href: string;
-  image: ImageAsset;
-}
-
-export const shaftCategories: ShaftCategory[] = [
-  {
-    label: "Caña baja",
-    href: "/tienda/botas/cana-baja",
-    image: {
-      src: "/brand/productos/ch01.webp",
-      alt: "Botín de caña baja en cuero camel claro",
-    },
-  },
-  {
-    label: "Caña media",
-    href: "/tienda/botas/cana-media",
-    image: {
-      src: "/brand/productos/cmh02.webp",
-      alt: "Bota de caña media en cuero Crazy Horse marrón oliva",
-    },
-  },
-  {
-    label: "Caña alta",
-    href: "/tienda/botas/cana-alta",
-    image: {
-      src: "/brand/productos/cna01-gris-topo.webp",
-      alt: "Bota de caña alta en nubuck gris topo",
-    },
-  },
-  {
-    label: "Botas urbanas",
-    href: "/tienda/botas/urbanas",
-    image: {
-      src: "/brand/productos/cng01.webp",
-      alt: "Bota urbana de napa negra con cierre lateral",
     },
   },
 ];
@@ -178,12 +144,6 @@ export const materialComponents: MaterialComponent[] = [
     },
   },
 ];
-
-/**
- * Productos de "Destacados de la temporada" (códigos de content/productos.ts).
- * PROVISIONAL: pasa a "Más vendidos" cuando el cliente indique cuáles son.
- */
-export const featuredProductCodes = ["CME01", "CMH02", "CFG01", "CMN02", "CNG01"];
 
 export interface ProductHotspot {
   /** Posición en porcentaje sobre la foto. */
@@ -287,4 +247,11 @@ export const brandStory = {
       alt: "Punteras de botas de cuero en tonos camel, cognac y marrón",
     },
   ] satisfies [ImageAsset, ImageAsset],
+};
+
+/** Bloque de contacto al final del inicio. */
+export const homeContact = {
+  title: "Pruébese sus botas o escríbanos",
+  description: `${brandInfo.showroom.name}: ${brandInfo.showroom.schedule.toLowerCase()}. ${brandInfo.shipping}. WhatsApp ${brandInfo.whatsapp.label}.`,
+  whatsappMessage: "Hola, quiero coordinar una visita al showroom.",
 };

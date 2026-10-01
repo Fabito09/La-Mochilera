@@ -6,11 +6,19 @@ import { FadeIn } from "@/components/ui/fade-in";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { brandStory } from "@/content/inicio";
 
-export function BrandStory() {
+interface BrandStoryProps {
+  id: string;
+}
+
+export function BrandStory({ id }: BrandStoryProps) {
   const [primaryImage, secondaryImage] = brandStory.images;
 
   return (
-    <section aria-labelledby="historia-titulo" className="py-24 md:py-32">
+    <section
+      id={id}
+      aria-labelledby="historia-titulo"
+      className="scroll-mt-(--header-height) py-24 md:py-32"
+    >
       <Container className="grid items-center gap-12 md:grid-cols-2 lg:gap-20">
         <FadeIn className="grid grid-cols-2 gap-4">
           <div className="relative aspect-3/4 overflow-hidden rounded-sm bg-muted">

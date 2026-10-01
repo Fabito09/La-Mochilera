@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MaterialsCarousel } from "@/components/home/materials-carousel";
+import { ProductHotspots } from "@/components/home/product-hotspots";
 import { ContentSections } from "@/components/page/content-sections";
 import { PageHeader } from "@/components/page/page-header";
 import { WhatsAppCta } from "@/components/page/whatsapp-cta";
@@ -40,6 +41,8 @@ export default function CraftsmanshipPage() {
           </ol>
         </Container>
       </section>
+
+      <ProductHotspots />
 
       <MaterialsCarousel />
 
