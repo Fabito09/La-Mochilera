@@ -3,10 +3,22 @@
 const WHATSAPP_DIGITS = "50672227212";
 
 /**
- * Dirección pública del sitio. PROVISIONAL: se define con la variable de
- * entorno NEXT_PUBLIC_SITE_URL cuando exista el dominio (ver .env.example).
+ * Dirección pública del sitio (SEO, mapa del sitio, vista previa al compartir).
+ * Orden de prioridad:
+ * 1. NEXT_PUBLIC_SITE_URL, si se configura a mano (ver .env.example).
+ * 2. En Vercel, la dirección de producción del proyecto. Vercel la informa
+ *    sola y pasa a ser el dominio propio cuando el cliente lo conecte.
+ * 3. En la compu de desarrollo, localhost.
  */
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+function resolveSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
+export const siteUrl = resolveSiteUrl();
 
 export function absoluteUrl(path: string): string {
   return new URL(path, siteUrl).toString();
