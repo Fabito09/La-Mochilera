@@ -63,7 +63,7 @@ export default function StoryPage() {
 
       <section className="bg-muted py-20 text-center">
         <Container>
-          <h2 className="font-display text-4xl md:text-5xl">Encuentre el par que lo acompañe</h2>
+          <h2 className="font-display text-4xl md:text-5xl">Encuentre su par para el camino</h2>
           <Button asChild size="lg" className="mt-8">
             <Link href={shopLink.href}>Ver la colección</Link>
           </Button>

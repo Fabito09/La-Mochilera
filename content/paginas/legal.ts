@@ -52,7 +52,7 @@ export const privacyPage: InfoPageContent = {
   eyebrow: "Legal",
   title: "Política de privacidad",
   intro:
-    "Cuidamos los datos que nos comparte y los usamos solo para atender su compra y mantenerle informado, si así lo desea.",
+    "Cuidamos los datos que nos comparte y los usamos solo para atender su compra y, si así lo desea, enviarle novedades.",
   metaDescription: "Política de privacidad y tratamiento de datos personales de La Mochilera · Casa de Cuero.",
   isDraft: true,
   sections: [

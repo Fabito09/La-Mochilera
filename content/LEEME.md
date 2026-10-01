@@ -40,6 +40,22 @@ Lo que hoy es relleno provisional está marcado con el comentario
 | Artículos de la bitácora (agregar o editar) | `bitacora.ts` | `journalArticles` |
 | Carrito, cuenta, búsqueda y página 404 | `paginas/utilitarias.ts` | El bloque de cada página |
 
+## Tono de los textos
+
+Todo el sitio le habla al cliente de **usted**, igual que el catálogo de la
+marca. Nunca mezclar con "tú" ni con "vos".
+
+| Sí (usted) | No (tú) | No (vos) |
+|------------|---------|----------|
+| Escríbanos | Escríbenos | Escribinos |
+| Elija su talla | Elige tu talla | Elegí tu talla |
+| Le ayudamos | Te ayudamos | Te ayudamos |
+
+- Botones con verbo en infinitivo ("Ver la colección", "Comprar ahora") son
+  neutros y se pueden usar.
+- Evitar frases que asuman el género del lector: en vez de "mantenerle
+  informado", escribir "enviarle novedades".
+
 ## Aviso de borrador
 
 Las políticas y los textos legales muestran un aviso visible de "Borrador".
