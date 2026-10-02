@@ -24,7 +24,7 @@ Lo que hoy es relleno provisional está marcado con el comentario
 | Textos de pilares y materiales | `inicio.ts` | `brandPillars`, `materialComponents` |
 | WhatsApp, Instagram, showroom, envíos | `marca.ts` | `brandInfo` |
 | Menú, categorías y subcategorías | `navegacion.ts` | `shopCategories`, `mainLinks` |
-| Textos de la tienda y banner promocional | `tienda.ts` | `catalogTexts`, `campaignPromoBanner` |
+| Textos de la tienda | `tienda.ts` | `catalogTexts` |
 | Tabla de tallas y cómo medir el pie | `tallas.ts` | `sizeGuideTable`, `footMeasuringSteps` |
 | Cuidados, garantía, envíos (ficha) | `ficha-producto.ts` | `careInstructions`, `warrantyText` |
 | Reseñas de un producto | `ficha-producto.ts` | `productReviews` |

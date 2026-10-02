@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { FilterPanel, type ToggleFilter } from "@/components/catalog/filter-panel";
 import { MobileFiltersDialog } from "@/components/catalog/mobile-filters-dialog";
-import { CampaignPromoBanner } from "@/components/product/campaign-promo-banner";
 import { ProductCard } from "@/components/product/product-card";
 import { Button } from "@/components/ui/button";
 import { catalogTexts } from "@/content/tienda";
@@ -23,7 +22,6 @@ import {
 const PAGE_SIZE = 6;
 /** Tarjetas visibles sin hacer scroll (móvil y escritorio). */
 const ABOVE_THE_FOLD_COUNT = 2;
-const PROMO_BANNER_POSITION = 2;
 
 interface CatalogBrowserProps {
   products: Product[];
@@ -55,13 +53,6 @@ export function CatalogBrowser({ products, presetShaftHeight }: CatalogBrowserPr
     setFilters(emptyFilters);
     setVisibleCount(PAGE_SIZE);
   };
-
-  const gridItems: React.ReactNode[] = visibleProducts.map((product, index) => (
-    <ProductCard key={product.code} product={product} isAboveTheFold={index < ABOVE_THE_FOLD_COUNT} />
-  ));
-  if (gridItems.length > PROMO_BANNER_POSITION) {
-    gridItems.splice(PROMO_BANNER_POSITION, 0, <CampaignPromoBanner key="promo" />);
-  }
 
   const filterPanelProps = {
     options: filterOptions,
@@ -118,8 +109,10 @@ export function CatalogBrowser({ products, presetShaftHeight }: CatalogBrowserPr
           </div>
         ) : (
           <ul className="mt-8 grid gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
-            {gridItems.map((item, index) => (
-              <li key={index}>{item}</li>
+            {visibleProducts.map((product, index) => (
+              <li key={product.code}>
+                <ProductCard product={product} isAboveTheFold={index < ABOVE_THE_FOLD_COUNT} />
+              </li>
             ))}
           </ul>
         )}
