@@ -23,7 +23,7 @@ export const termsPage: InfoPageContent = {
     {
       heading: "Productos y precios",
       paragraphs: [
-        "Los precios se expresan en colones costarricenses (₡). Hacemos lo posible por mostrar los colores con fidelidad, pero pueden variar según la pantalla y porque el cuero natural nunca es idéntico entre piezas.",
+        "Los precios se expresan en colones costarricenses (₡). Hacemos lo posible por mostrar los colores con fidelidad, pero pueden variar según la pantalla y porque el cuero nunca es idéntico entre piezas.",
         "La disponibilidad de modelos y tallas se confirma al momento de coordinar la compra.",
       ],
     },

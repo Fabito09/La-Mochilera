@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps<"/producto/[slug]">
   const [mainImage] = product.images;
   return {
     title: `${product.name} ${product.colorName}`,
-    description: `${product.name} en cuero ${product.leatherType}, color ${product.colorName.toLowerCase()}. ${shaftHeightLabels[product.shaftHeight]} de cuero vacuno 100% natural. Envíos a toda Costa Rica.`,
+    description: `${product.name} en cuero ${product.leatherType}, color ${product.colorName.toLowerCase()}. ${shaftHeightLabels[product.shaftHeight]} de cuero vacuno. Envíos a toda Costa Rica.`,
     openGraph: { images: [{ url: mainImage.src, alt: mainImage.alt }] },
   };
 }

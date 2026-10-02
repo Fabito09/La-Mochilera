@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { MegaMenuPanel } from "@/components/layout/mega-menu-panel";
 import {
   featuredProduct,
+  homeLink,
   mainLinks,
   shopCategories,
   shopLink,
@@ -44,8 +46,15 @@ export function DesktopNavigation({
     if (!event.currentTarget.contains(event.relatedTarget)) closeShopMenu();
   };
 
+  const pathname = usePathname();
+  const currentPageMark = (href: string) => (pathname === href ? "page" : undefined);
+
   return (
     <nav aria-label="Principal" className="hidden h-full items-center gap-8 lg:flex">
+      <Link href={homeLink.href} aria-current={currentPageMark(homeLink.href)} className={navItemClassName}>
+        {homeLink.label}
+      </Link>
+
       {/* El contenedor ocupa todo el alto del header para que el cursor
           pueda bajar del botón al panel sin que el menú se cierre. */}
       <div
@@ -80,7 +89,12 @@ export function DesktopNavigation({
       </div>
 
       {mainLinks.map((link) => (
-        <Link key={link.href} href={link.href} className={navItemClassName}>
+        <Link
+          key={link.href}
+          href={link.href}
+          aria-current={currentPageMark(link.href)}
+          className={navItemClassName}
+        >
           {link.label}
         </Link>
       ))}

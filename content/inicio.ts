@@ -5,7 +5,6 @@
 // material de marca disponible, pensado para reemplazarse cuando llegue el
 // definitivo (buscar "PROVISIONAL" para encontrarlo todo).
 
-import { brandInfo } from "@/content/marca";
 import type { ImageAsset } from "@/lib/page-content";
 
 /**
@@ -34,7 +33,7 @@ export interface HeroContent {
 export const heroContent: HeroContent = {
   title: "Hecho para durar. Hecho para el camino.",
   description:
-    "Botas de cuero vacuno 100% natural, diseñadas para los que llevan la montaña en cada paso.",
+    "Botas de cuero vacuno, diseñadas para los que llevan la montaña en cada paso.",
   posterImageUrl: "/brand/fotos/portada-poster.webp",
   // "VIDEO WEB 1" (taller), recortado sin el logo impreso.
   video: {
@@ -48,7 +47,7 @@ export const heroContent: HeroContent = {
 export const brandPillarsSection = {
   eyebrow: "Materiales",
   title: "Lo que usamos en cada par",
-  description: "Cuero natural, costuras reforzadas y suelas pensadas para el terreno.",
+  description: "Cuero vacuno, costuras reforzadas y suelas pensadas para el terreno.",
 };
 
 export interface BrandPillar {
@@ -59,12 +58,12 @@ export interface BrandPillar {
 
 export const brandPillars: BrandPillar[] = [
   {
-    title: "Cuero 100% natural",
+    title: "Cuero vacuno",
     description:
-      "Cuero vacuno de verdad: Crazy Horse, Nubuck, Napa y Antique. Cada acabado envejece distinto y toma la forma de quien lo usa.",
+      "Crazy Horse, Nubuck, Napa y Antique. Cada acabado envejece distinto y toma la forma de quien lo usa.",
     image: {
       src: "/brand/detalles/cuero-crazy-horse.webp",
-      alt: "Puntera de una bota en cuero Crazy Horse con marcas naturales del acabado envejecido",
+      alt: "Puntera de una bota en cuero Crazy Horse con las marcas propias del acabado envejecido",
     },
   },
   {
@@ -102,13 +101,13 @@ const ORIGIN_NOT_CONFIRMED = "";
 export const materialComponents: MaterialComponent[] = [
   {
     name: "Cuero",
-    headline: "Vacuno, 100% natural",
+    headline: "Vacuno, en cinco acabados",
     description:
       "Trabajamos cinco acabados: Crazy Horse, Nubuck, Napa, Antique y Duna. Todos respiran, se adaptan al pie y ganan carácter con el uso.",
     origin: ORIGIN_NOT_CONFIRMED,
     image: {
       src: "/brand/detalles/cuero-crazy-horse.webp",
-      alt: "Superficie de cuero Crazy Horse con variaciones naturales de tono",
+      alt: "Superficie de cuero Crazy Horse con variaciones de tono propias del acabado",
     },
   },
   {
@@ -182,7 +181,7 @@ export const featuredProductShowcase = {
       x: 58,
       y: 30,
       title: "100% cuero",
-      description: "Cuero vacuno natural con acabado liso y ligero efecto aceitado.",
+      description: "Cuero vacuno con acabado liso y ligero efecto aceitado.",
     },
     {
       x: 20,
@@ -248,7 +247,7 @@ export const brandStory = {
   // PROVISIONAL: texto de marca de relleno. Reemplazar por la historia real del fundador.
   paragraphs: [
     "En La Mochilera creemos que una buena bota se reconoce con el tiempo: cuando el cuero toma la forma del pie y cada marca cuenta por dónde ha caminado.",
-    "Por eso elegimos cueros naturales, costuras que aguantan y suelas pensadas para el terreno. Botas para quienes prefieren una sola pieza bien hecha a muchas de temporada.",
+    "Por eso elegimos cuero vacuno, costuras que aguantan y suelas pensadas para el terreno. Botas para quienes prefieren una sola pieza bien hecha a muchas de temporada.",
   ],
   // Video "VIDEO WEB 2" (aire libre), recortado sin el logo impreso.
   primaryMedia: {
@@ -263,9 +262,19 @@ export const brandStory = {
   } satisfies ImageAsset,
 };
 
-/** Bloque de contacto al final del inicio. */
+/**
+ * Cierre del inicio: recrea la última página del catálogo "Campaña 1 | 2026"
+ * ("Contáctenos" sobre fondo de botas). Los datos salen de content/marca.ts.
+ */
 export const homeContact = {
-  title: "Pruébese sus botas o escríbanos",
-  description: `${brandInfo.showroom.name}: ${brandInfo.showroom.schedule.toLowerCase()}. ${brandInfo.shipping}. WhatsApp ${brandInfo.whatsapp.label}.`,
-  whatsappMessage: "Hola, quiero coordinar una visita al showroom.",
+  title: "Contáctenos",
+  /** Sello circular, como en el catálogo. */
+  badge: "Para realizar su compra",
+  // PROVISIONAL: foto de la misma sesión. Si el cliente envía el original del
+  // fondo del catálogo, reemplazar src y alt.
+  backgroundImage: {
+    src: "/brand/fotos/botas-duo-horizontal.webp",
+    alt: "",
+  },
+  whatsappMessage: "Hola, quiero realizar una compra.",
 };

@@ -46,7 +46,7 @@ export const journalArticles: JournalArticle[] = [
       {
         heading: "2. Hidratación: el cuero también tiene sed",
         paragraphs: [
-          "El cuero natural pierde sus aceites con el uso. Cada uno o dos meses, aplique una capa fina de crema o cera del mismo tono y lustre al secar.",
+          "El cuero pierde sus aceites con el uso. Cada uno o dos meses, aplique una capa fina de crema o cera del mismo tono y lustre al secar.",
           "El nubuck es la excepción: se cuida en seco, con cepillo de goma y un spray protector específico.",
         ],
       },

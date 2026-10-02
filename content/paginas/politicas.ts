@@ -35,10 +35,10 @@ export const warrantyPage: InfoPageContent = {
     {
       heading: "Qué no cubre",
       bullets: [
-        "El desgaste natural de la suela y del cuero por el uso.",
+        "El desgaste normal de la suela y del cuero por el uso.",
         "Daños por contacto prolongado con agua, calor directo o productos químicos.",
         "Arreglos o modificaciones hechas por terceros.",
-        "Las marcas, arrugas y cambios de tono propios del cuero natural, que son parte de su carácter.",
+        "Las marcas, arrugas y cambios de tono propios del cuero, que son parte de su carácter.",
       ],
     },
     {

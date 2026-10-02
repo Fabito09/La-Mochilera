@@ -8,7 +8,7 @@ export const careGuidePage: InfoPageContent = {
   eyebrow: "Ayuda",
   title: "Guía de cuidado del cuero",
   intro:
-    "Con unos minutos de atención cada tanto, un par de cuero natural dura años y se ve mejor con el tiempo.",
+    "Con unos minutos de atención cada tanto, un par de cuero dura años y se ve mejor con el tiempo.",
   metaDescription:
     "Cómo limpiar, hidratar y guardar botas de cuero liso y nubuck para que duren años. Guía de cuidado de La Mochilera.",
   image: {

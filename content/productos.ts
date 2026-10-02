@@ -16,8 +16,8 @@ export const CAMPAIGN_PRICE = 49_900;
  */
 export const STANDARD_SIZES = [39, 40, 41, 42, 43, 44, 45];
 
-const NATURAL_LEATHER = "Cuero vacuno 100% natural";
-const SMOOTH_NATURAL_LEATHER = "Cuero vacuno liso 100% natural";
+const COW_LEATHER = "Cuero vacuno";
+const SMOOTH_COW_LEATHER = "Cuero vacuno liso";
 const CAMPAIGN_RELEASE = "2026-01-15"; // PROVISIONAL: fecha de lanzamiento de la campaña
 
 export const products: Product[] = [
@@ -30,7 +30,7 @@ export const products: Product[] = [
     leatherType: "Nubuck encerado",
     colorName: "Marrón cálido",
     colorFamily: "Marrón",
-    material: NATURAL_LEATHER,
+    material: COW_LEATHER,
     closure: "Cordones",
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redondeada",
@@ -56,7 +56,7 @@ export const products: Product[] = [
     leatherType: "Antique",
     colorName: "Marrón miel",
     colorFamily: "Miel y camel",
-    material: `${NATURAL_LEATHER}, acabado liso con ligero efecto aceitado`,
+    material: `${COW_LEATHER}, acabado liso con ligero efecto aceitado`,
     closure: "Cordones",
     sole: "Sintética tipo TR, flexible y resistente, antiderrapante con tacón bajo integrado",
     toe: "Redondeada",
@@ -83,7 +83,7 @@ export const products: Product[] = [
     leatherType: "Crazy Horse",
     colorName: "Marrón oliva envejecido",
     colorFamily: "Marrón",
-    material: NATURAL_LEATHER,
+    material: COW_LEATHER,
     closure: "Cordones",
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redonda lisa",
@@ -107,7 +107,7 @@ export const products: Product[] = [
     leatherType: "Duna miel",
     colorName: "Marrón cognac",
     colorFamily: "Marrón",
-    material: NATURAL_LEATHER,
+    material: COW_LEATHER,
     closure: "Cordones y cierre lateral", // PROVISIONAL: la ficha dice solo cordones
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redondeada",
@@ -133,7 +133,7 @@ export const products: Product[] = [
     leatherType: "Nubuck encerado",
     colorName: "Gris topo",
     colorFamily: "Gris",
-    material: NATURAL_LEATHER,
+    material: COW_LEATHER,
     closure: "Cordones",
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redondeada",
@@ -156,7 +156,7 @@ export const products: Product[] = [
     leatherType: "Nubuck",
     colorName: "Marrón",
     colorFamily: "Marrón",
-    material: NATURAL_LEATHER,
+    material: COW_LEATHER,
     closure: "Cordones",
     sole: "Sintética dentada, antiderrapante",
     toe: "Redonda lisa",
@@ -179,7 +179,7 @@ export const products: Product[] = [
     leatherType: "Nubuck",
     colorName: "Camel",
     colorFamily: "Miel y camel",
-    material: NATURAL_LEATHER,
+    material: COW_LEATHER,
     closure: "Cordones",
     sole: "Sintética dentada, antiderrapante",
     toe: "Redonda lisa",
@@ -202,7 +202,7 @@ export const products: Product[] = [
     leatherType: "Crazy honey",
     colorName: "Camel claro / miel",
     colorFamily: "Miel y camel",
-    material: NATURAL_LEATHER,
+    material: COW_LEATHER,
     closure: "Cordones",
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redonda lisa",
@@ -225,7 +225,7 @@ export const products: Product[] = [
     leatherType: "Napa",
     colorName: "Negro lustrable",
     colorFamily: "Negro",
-    material: SMOOTH_NATURAL_LEATHER,
+    material: SMOOTH_COW_LEATHER,
     closure: "Cierre lateral (zipper) y cordones",
     sole: "Sintética dentada, antiderrapante",
     toe: "Redonda lisa",
@@ -249,7 +249,7 @@ export const products: Product[] = [
     leatherType: "Napa",
     colorName: "Negro lustrable",
     colorFamily: "Negro",
-    material: SMOOTH_NATURAL_LEATHER,
+    material: SMOOTH_COW_LEATHER,
     closure: "Cordones",
     sole: "Sintética dentada, antiderrapante",
     toe: "Redonda lisa",

@@ -14,7 +14,7 @@ export const storyPage: InfoPageContent & {
   intro:
     "La Mochilera nació de una idea simple: hacer botas que acompañen de verdad, en la ciudad y en el sendero, y que duren muchos años.",
   metaDescription:
-    "La historia de La Mochilera · Casa de Cuero: botas de cuero natural pensadas para quienes llevan la montaña en cada paso.",
+    "La historia de La Mochilera · Casa de Cuero: botas de cuero vacuno pensadas para quienes llevan la montaña en cada paso.",
   image: {
     src: "/brand/productos/cme01-frente.webp",
     alt: "Botín Summit de nubuck marrón visto de frente",
@@ -30,7 +30,7 @@ export const storyPage: InfoPageContent & {
     {
       heading: "Lo que nos mueve",
       paragraphs: [
-        "Creemos que una buena bota se reconoce con el tiempo. Por eso elegimos cuero vacuno 100% natural, costuras que aguantan y suelas pensadas para el terreno.",
+        "Creemos que una buena bota se reconoce con el tiempo. Por eso elegimos cuero vacuno, costuras que aguantan y suelas pensadas para el terreno.",
         "Preferimos una sola pieza bien hecha a muchas de temporada. Es nuestra forma de cuidar el bolsillo de quien nos elige y también el entorno que tanto disfrutamos recorrer.",
       ],
     },
@@ -56,12 +56,12 @@ export const craftsmanshipPage: InfoPageContent & { processSteps: ProcessStep[] 
   eyebrow: "Artesanía y materiales",
   title: "Así se construye una bota que dura",
   intro:
-    "Cada par reúne cuero natural, costuras reforzadas y una suela pensada para el terreno. Esto es lo que hay detrás.",
+    "Cada par reúne cuero vacuno, costuras reforzadas y una suela pensada para el terreno. Esto es lo que hay detrás.",
   metaDescription:
     "Proceso, materiales y tipos de cuero de las botas La Mochilera: Crazy Horse, Nubuck, Napa, Antique y más.",
   image: {
     src: "/brand/detalles/cuero-crazy-horse.webp",
-    alt: "Puntera de cuero Crazy Horse con doble costura y marcas naturales",
+    alt: "Puntera de cuero Crazy Horse con doble costura y marcas propias del acabado",
   },
   // PROVISIONAL: proceso típico de una bota de cuero; confirmar con el cliente.
   processSteps: [

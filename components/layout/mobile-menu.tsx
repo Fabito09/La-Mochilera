@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { BrandLogo } from "@/components/layout/brand-logo";
 import {
   accountLinks,
+  homeLink,
   mainLinks,
   shopCategories,
   shopLink,
@@ -49,6 +50,9 @@ export function MobileMenu() {
           </Dialog.Description>
 
           <nav aria-label="Menú móvil" className="flex-1 px-6 py-8">
+            <Link href={homeLink.href} onClick={closeMenu} className={menuLinkClassName}>
+              {homeLink.label}
+            </Link>
             <Link href={shopLink.href} onClick={closeMenu} className={menuLinkClassName}>
               {shopLink.label}
             </Link>

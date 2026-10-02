@@ -32,7 +32,7 @@ export function SiteFooter() {
           <div>
             <BrandLogo />
             <p className="mt-6 max-w-xs text-sm leading-6 text-forest-foreground/80">
-              Botas de cuero vacuno 100% natural, diseñadas para los que llevan la montaña en
+              Botas de cuero vacuno, diseñadas para los que llevan la montaña en
               cada paso.
             </p>
           </div>

@@ -1,8 +1,8 @@
 import { BrandPillars } from "@/components/home/brand-pillars";
 import { BrandStory } from "@/components/home/brand-story";
-import { WhatsAppCta } from "@/components/page/whatsapp-cta";
+import { ContactShowcase } from "@/components/home/contact-showcase";
 import { AnimatedHero } from "@/components/ui/animated-hero-section-1";
-import { heroContent, homeContact, VIDEO_PLAYBACK_RATE } from "@/content/inicio";
+import { heroContent, VIDEO_PLAYBACK_RATE } from "@/content/inicio";
 
 const STORY_SECTION_ID = "historia";
 
@@ -31,11 +31,7 @@ export default function HomePage() {
         id="materiales"
         callToAction={{ label: "Conocer nuestros materiales", href: "/artesania" }}
       />
-      <WhatsAppCta
-        title={homeContact.title}
-        description={homeContact.description}
-        message={homeContact.whatsappMessage}
-      />
+      <ContactShowcase />
     </main>
   );
 }

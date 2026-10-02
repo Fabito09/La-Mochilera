@@ -37,7 +37,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "¿De qué están hechas las botas?",
     answer:
-      "De cuero vacuno 100% natural, en acabados Crazy Horse, Nubuck, Napa, Antique, Duna y Crazy honey, con suelas sintéticas antideslizantes.",
+      "De cuero vacuno, en acabados Crazy Horse, Nubuck, Napa, Antique, Duna y Crazy honey, con suelas sintéticas antideslizantes.",
   },
   {
     // PROVISIONAL: confirmar medios de pago aceptados.

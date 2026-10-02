@@ -26,11 +26,11 @@ const bodyFont = Roboto({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "La Mochilera · Casa de Cuero — Botas de cuero natural",
+    default: "La Mochilera · Casa de Cuero — Botas de cuero vacuno",
     template: "%s | La Mochilera · Casa de Cuero",
   },
   description:
-    "Botas de cuero vacuno 100% natural, diseñadas para los que llevan la montaña en cada paso. Showroom en San Pedro y envíos a toda Costa Rica.",
+    "Botas de cuero vacuno, diseñadas para los que llevan la montaña en cada paso. Showroom en San Pedro y envíos a toda Costa Rica.",
   // Vista previa al compartir el enlace en WhatsApp, Instagram o Facebook.
   openGraph: {
     type: "website",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: "/brand/fotos/botas-duo-horizontal.webp",
         width: 2400,
         height: 1920,
-        alt: "Botas de cuero natural de La Mochilera sobre retazos de cuero",
+        alt: "Botas de cuero de La Mochilera sobre retazos de cuero",
       },
     ],
   },

@@ -18,13 +18,16 @@ export interface FeaturedProduct extends NavLink {
   imageAlt: string;
 }
 
+/** Primer botón del menú: vuelve al inicio ("lobby"). */
+export const homeLink: NavLink = { label: "Inicio", href: "/" };
+
 export const shopLink: NavLink = { label: "Tienda", href: "/tienda" };
 
 export const shopCategories: ShopCategory[] = [
   {
     label: "Botas",
     href: "/tienda/botas",
-    description: "Cuero vacuno 100% natural, suelas antideslizantes y costuras que duran.",
+    description: "Cuero vacuno, suelas antideslizantes y costuras que duran.",
     subcategories: [
       { label: "Caña baja", href: "/tienda/botas/cana-baja" },
       { label: "Caña media", href: "/tienda/botas/cana-media" },
@@ -62,7 +65,7 @@ export const shopCategories: ShopCategory[] = [
 ];
 
 export const featuredProduct: FeaturedProduct = {
-  label: "Campaña 1 · 2026 — Botas de cuero natural",
+  label: "Campaña 1 · 2026 — Botas de cuero vacuno",
   href: "/tienda/botas",
   imageUrl: "/brand/fotos/botas-duo-vertical.webp",
   imageAlt: "Dos botas de cuero, una camel y una cognac, sobre retazos de cuero",

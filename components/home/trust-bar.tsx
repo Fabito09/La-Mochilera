@@ -6,7 +6,7 @@ const trustItems = [
   { icon: Truck, title: "Envíos", detail: brandInfo.shipping },
   { icon: MapPin, title: brandInfo.showroom.name, detail: brandInfo.showroom.schedule },
   { icon: MessageCircle, title: "Atención por WhatsApp", detail: brandInfo.whatsapp.label },
-  { icon: BadgeCheck, title: "Cuero 100% natural", detail: "Cuero vacuno en todos los modelos" },
+  { icon: BadgeCheck, title: "Cuero vacuno", detail: "En todos los modelos" },
 ];
 
 export function TrustBar() {
