@@ -3,7 +3,7 @@
 
 import { products } from "@/content/productos";
 
-export type ProductCategory = "botas" | "chaquetas" | "accesorios" | "cuidado-del-cuero";
+export type ProductCategory = "botas" | "accesorios" | "gorros";
 
 /** Coincide con el último tramo de la URL: /tienda/botas/cana-media */
 export type ShaftHeight = "cana-baja" | "cana-media" | "cana-alta" | "urbanas";

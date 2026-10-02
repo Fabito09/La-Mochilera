@@ -8,7 +8,6 @@ import {
   type HeroVideoSources,
 } from "@/components/ui/hero-background-media";
 import { ScrollDownIndicator } from "@/components/ui/scroll-down-indicator";
-import { VideoPlaybackToggle } from "@/components/ui/video-playback-toggle";
 import { useBackgroundVideo } from "@/hooks/use-background-video";
 import { cn } from "@/lib/utils";
 
@@ -71,8 +70,10 @@ export function AnimatedHero({
   className,
 }: AnimatedHeroProps) {
   const hasVideoSource = Boolean(backgroundVideoSrc?.landscape || backgroundVideoSrc?.portrait);
-  const { videoRef, shouldShowVideo, isPlaying, togglePlayback, playbackEvents } =
-    useBackgroundVideo(hasVideoSource, videoPlaybackRate);
+  const { shouldShowVideo, playbackEvents } = useBackgroundVideo(
+    hasVideoSource,
+    videoPlaybackRate,
+  );
 
   return (
     <section
@@ -86,7 +87,6 @@ export function AnimatedHero({
         videoSources={backgroundVideoSrc}
         stillImageUrl={posterImageUrl ?? backgroundImageUrl}
         shouldShowVideo={shouldShowVideo}
-        videoRef={videoRef}
         playbackEvents={playbackEvents}
       />
 
@@ -133,13 +133,6 @@ export function AnimatedHero({
         />
       )}
 
-      {shouldShowVideo && (
-        <VideoPlaybackToggle
-          isPlaying={isPlaying}
-          onToggle={togglePlayback}
-          className="absolute bottom-8 left-6 z-10 md:left-12"
-        />
-      )}
     </section>
   );
 }

@@ -36,14 +36,6 @@ export const shopCategories: ShopCategory[] = [
     ],
   },
   {
-    label: "Chaquetas",
-    href: "/tienda/chaquetas",
-    subcategories: [
-      { label: "Chaquetas de cuero", href: "/tienda/chaquetas/cuero" },
-      { label: "Chalecos", href: "/tienda/chaquetas/chalecos" },
-    ],
-  },
-  {
     label: "Accesorios",
     href: "/tienda/accesorios",
     subcategories: [
@@ -54,13 +46,9 @@ export const shopCategories: ShopCategory[] = [
     ],
   },
   {
-    label: "Cuidado del cuero",
-    href: "/tienda/cuidado-del-cuero",
-    subcategories: [
-      { label: "Ceras y cremas", href: "/tienda/cuidado-del-cuero/ceras" },
-      { label: "Kits de limpieza", href: "/tienda/cuidado-del-cuero/kits" },
-      { label: "Guía de cuidado", href: "/guia-de-cuidado" },
-    ],
+    label: "Gorros",
+    href: "/tienda/gorros",
+    subcategories: [],
   },
 ];
 
@@ -74,7 +62,6 @@ export const featuredProduct: FeaturedProduct = {
 export const mainLinks: NavLink[] = [
   { label: "Nuestra historia", href: "/nuestra-historia" },
   { label: "Artesanía", href: "/artesania" },
-  { label: "Bitácora", href: "/bitacora" },
   { label: "Contacto", href: "/contacto" },
 ];
 

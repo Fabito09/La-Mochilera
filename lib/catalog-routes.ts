@@ -22,7 +22,7 @@ export interface CatalogPage {
   breadcrumbs: NavLink[];
 }
 
-const PRODUCT_CATEGORIES: ProductCategory[] = ["botas", "chaquetas", "accesorios", "cuidado-del-cuero"];
+const PRODUCT_CATEGORIES: ProductCategory[] = ["botas", "accesorios", "gorros"];
 
 function lastSegment(href: string): string {
   return href.split("/").at(-1) ?? "";

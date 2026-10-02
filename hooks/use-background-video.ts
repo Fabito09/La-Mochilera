@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import { useReducedMotion } from "framer-motion";
 
 const SLOW_CONNECTION_TYPES = ["slow-2g", "2g"];
@@ -38,23 +38,19 @@ function isConnectionSuitableOnServer(): boolean {
   return false;
 }
 
-/**
- * Decide si el video de fondo debe mostrarse (en cualquier pantalla, salvo con
- * ahorro de datos, conexión lenta o preferencia de movimiento reducido) y
- * expone el control de pausa/reproducción.
- */
 export interface VideoPlaybackEvents {
-  onPlay: () => void;
-  onPause: () => void;
   onLoadedMetadata: (event: React.SyntheticEvent<HTMLVideoElement>) => void;
 }
 
 /**
+ * Decide si el video de fondo debe mostrarse (en cualquier pantalla, salvo con
+ * ahorro de datos, conexión lenta o preferencia de movimiento reducido) y
+ * aplica la velocidad de reproducción. No hay botón de pausa, a pedido del
+ * cliente: con "reducir movimiento" activado se muestra la foto fija.
+ *
  * @param playbackRate Velocidad de reproducción: 1 = normal, 0.8 = 20 % más lento.
  */
 export function useBackgroundVideo(hasVideoSource: boolean, playbackRate = 1) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
   const prefersReducedMotion = useReducedMotion();
   const isConnectionSuitable = useSyncExternalStore(
     subscribeToConnection,
@@ -65,19 +61,7 @@ export function useBackgroundVideo(hasVideoSource: boolean, playbackRate = 1) {
   const shouldShowVideo =
     hasVideoSource && isConnectionSuitable && !prefersReducedMotion;
 
-  const togglePlayback = useCallback(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      void video.play();
-    } else {
-      video.pause();
-    }
-  }, []);
-
   const playbackEvents: VideoPlaybackEvents = {
-    onPlay: () => setIsPlaying(true),
-    onPause: () => setIsPlaying(false),
     // defaultPlaybackRate mantiene la velocidad al repetir el bucle.
     onLoadedMetadata: (event) => {
       event.currentTarget.defaultPlaybackRate = playbackRate;
@@ -85,5 +69,5 @@ export function useBackgroundVideo(hasVideoSource: boolean, playbackRate = 1) {
     },
   };
 
-  return { videoRef, shouldShowVideo, isPlaying, togglePlayback, playbackEvents };
+  return { shouldShowVideo, playbackEvents };
 }

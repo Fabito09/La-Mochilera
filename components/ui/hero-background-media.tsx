@@ -14,7 +14,6 @@ interface HeroBackgroundMediaProps {
   videoSources?: HeroVideoSources;
   stillImageUrl?: string;
   shouldShowVideo: boolean;
-  videoRef: React.Ref<HTMLVideoElement>;
   playbackEvents: VideoPlaybackEvents;
 }
 
@@ -28,7 +27,6 @@ export function HeroBackgroundMedia({
   videoSources,
   stillImageUrl,
   shouldShowVideo,
-  videoRef,
   playbackEvents,
 }: HeroBackgroundMediaProps) {
   const landscapeSrc = videoSources?.landscape ?? videoSources?.portrait;
@@ -38,7 +36,6 @@ export function HeroBackgroundMedia({
     <div className="absolute inset-0 z-0" aria-hidden="true">
       {shouldShowVideo ? (
         <video
-          ref={videoRef}
           autoPlay
           muted
           loop

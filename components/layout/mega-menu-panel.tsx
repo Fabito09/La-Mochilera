@@ -23,9 +23,10 @@ export function MegaMenuPanel({
       id={id}
       className="absolute inset-x-0 top-full border-b border-t bg-background text-foreground shadow-lg"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[repeat(4,minmax(0,1fr))_minmax(0,1.4fr)] gap-10 px-12 py-10">
+      {/* Las columnas se reparten solas según cuántas categorías haya. */}
+      <div className="mx-auto flex max-w-7xl gap-10 px-12 py-10">
         {categories.map((category) => (
-          <div key={category.href}>
+          <div key={category.href} className="min-w-0 flex-1">
             <Link
               href={category.href}
               onClick={onNavigate}
@@ -33,8 +34,9 @@ export function MegaMenuPanel({
             >
               {category.label}
             </Link>
-            <ul className="mt-4 space-y-2.5">
-              {category.subcategories.map((subcategory) => (
+            {category.subcategories.length > 0 && (
+              <ul className="mt-4 space-y-2.5">
+                {category.subcategories.map((subcategory) => (
                 <li key={subcategory.href}>
                   <Link
                     href={subcategory.href}
@@ -44,15 +46,16 @@ export function MegaMenuPanel({
                     {subcategory.label}
                   </Link>
                 </li>
-              ))}
-            </ul>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
 
         <Link
           href={featuredProduct.href}
           onClick={onNavigate}
-          className="group block"
+          className="group block w-[30%] shrink-0"
         >
           <div className="relative aspect-4/3 overflow-hidden rounded-sm">
             {featuredProduct.imageUrl ? (

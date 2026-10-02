@@ -36,7 +36,6 @@ Lo que hoy es relleno provisional está marcado con el comentario
 | Preguntas frecuentes | `paginas/ayuda.ts` | `faqItems` |
 | Textos de contacto y guía de tallas | `paginas/ayuda.ts` | `contactPage`, `sizeGuidePage` |
 | Dirección y mapa del showroom | `marca.ts` | `brandInfo.showroom.address` y `mapUrl` |
-| Artículos de la bitácora (agregar o editar) | `bitacora.ts` | `journalArticles` |
 | Carrito, cuenta, búsqueda y página 404 | `paginas/utilitarias.ts` | El bloque de cada página |
 
 ## Tono de los textos

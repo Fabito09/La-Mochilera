@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHeader } from "@/components/page/page-header";
 import { WhatsAppCta } from "@/components/page/whatsapp-cta";
 import { SizeGuideContent } from "@/components/product/size-guide-content";
@@ -27,13 +26,6 @@ export default function SizeGuidePage() {
         <aside className="h-fit rounded-sm bg-muted p-8">
           <h2 className="font-display text-2xl">Antes de elegir</h2>
           <p className="mt-3 leading-7 text-muted-foreground">{sizeGuideNotice}</p>
-          <p className="mt-4 leading-7 text-muted-foreground">
-            ¿Más detalles?{" "}
-            <Link href="/bitacora/como-medir-su-pie" className="text-foreground underline underline-offset-4">
-              Lea nuestra guía paso a paso
-            </Link>
-            .
-          </p>
         </aside>
       </Container>
       <WhatsAppCta
