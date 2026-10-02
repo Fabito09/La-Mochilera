@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { VideoPlaybackToggle } from "@/components/ui/video-playback-toggle";
-import type { GalleryMedia } from "@/content/inicio";
+import { VIDEO_PLAYBACK_RATE, type GalleryMedia } from "@/content/inicio";
 import { useBackgroundVideo } from "@/hooks/use-background-video";
 
 interface GalleryMediaTileProps {
@@ -18,7 +18,7 @@ interface GalleryMediaTileProps {
 export function GalleryMediaTile({ media, sizes }: GalleryMediaTileProps) {
   const isVideo = media.kind === "video";
   const { videoRef, shouldShowVideo, isPlaying, togglePlayback, playbackEvents } =
-    useBackgroundVideo(isVideo);
+    useBackgroundVideo(isVideo, VIDEO_PLAYBACK_RATE);
   const stillImageSrc = isVideo ? media.posterUrl : media.src;
 
   if (isVideo && shouldShowVideo) {

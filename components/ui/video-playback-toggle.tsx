@@ -22,7 +22,9 @@ export function VideoPlaybackToggle({
       size="icon"
       onClick={onToggle}
       aria-label={isPlaying ? "Pausar video de fondo" : "Reproducir video de fondo"}
-      className={cn("rounded-full", className)}
+      // Oculto en pantallas táctiles (celulares y tablets), a pedido del cliente.
+      // Ahí quien activa "reducir movimiento" en el sistema ve la foto fija.
+      className={cn("rounded-full pointer-coarse:hidden", className)}
     >
       <Icon className="h-4 w-4" aria-hidden="true" />
     </Button>

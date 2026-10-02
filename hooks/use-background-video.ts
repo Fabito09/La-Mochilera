@@ -43,7 +43,16 @@ function isConnectionSuitableOnServer(): boolean {
  * ahorro de datos, conexión lenta o preferencia de movimiento reducido) y
  * expone el control de pausa/reproducción.
  */
-export function useBackgroundVideo(hasVideoSource: boolean) {
+export interface VideoPlaybackEvents {
+  onPlay: () => void;
+  onPause: () => void;
+  onLoadedMetadata: (event: React.SyntheticEvent<HTMLVideoElement>) => void;
+}
+
+/**
+ * @param playbackRate Velocidad de reproducción: 1 = normal, 0.8 = 20 % más lento.
+ */
+export function useBackgroundVideo(hasVideoSource: boolean, playbackRate = 1) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const prefersReducedMotion = useReducedMotion();
@@ -66,9 +75,14 @@ export function useBackgroundVideo(hasVideoSource: boolean) {
     }
   }, []);
 
-  const playbackEvents = {
+  const playbackEvents: VideoPlaybackEvents = {
     onPlay: () => setIsPlaying(true),
     onPause: () => setIsPlaying(false),
+    // defaultPlaybackRate mantiene la velocidad al repetir el bucle.
+    onLoadedMetadata: (event) => {
+      event.currentTarget.defaultPlaybackRate = playbackRate;
+      event.currentTarget.playbackRate = playbackRate;
+    },
   };
 
   return { videoRef, shouldShowVideo, isPlaying, togglePlayback, playbackEvents };

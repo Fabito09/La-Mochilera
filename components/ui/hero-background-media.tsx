@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+import type { VideoPlaybackEvents } from "@/hooks/use-background-video";
 
 /** Videos MP4 del hero, uno por orientación de pantalla. */
 export interface HeroVideoSources {
@@ -14,10 +15,7 @@ interface HeroBackgroundMediaProps {
   stillImageUrl?: string;
   shouldShowVideo: boolean;
   videoRef: React.Ref<HTMLVideoElement>;
-  playbackEvents: {
-    onPlay: () => void;
-    onPause: () => void;
-  };
+  playbackEvents: VideoPlaybackEvents;
 }
 
 /**

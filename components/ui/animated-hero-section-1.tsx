@@ -28,6 +28,8 @@ export interface AnimatedHeroProps {
   description: string;
   ctaButton: HeroCallToAction;
   secondaryCta?: HeroCallToAction;
+  /** Velocidad del video: 1 = normal, 0.8 = 20 % más lento. */
+  videoPlaybackRate?: number;
   /** id de la sección siguiente, destino del indicador de scroll. */
   scrollTargetId?: string;
   className?: string;
@@ -64,12 +66,13 @@ export function AnimatedHero({
   description,
   ctaButton,
   secondaryCta,
+  videoPlaybackRate = 1,
   scrollTargetId,
   className,
 }: AnimatedHeroProps) {
   const hasVideoSource = Boolean(backgroundVideoSrc?.landscape || backgroundVideoSrc?.portrait);
   const { videoRef, shouldShowVideo, isPlaying, togglePlayback, playbackEvents } =
-    useBackgroundVideo(hasVideoSource);
+    useBackgroundVideo(hasVideoSource, videoPlaybackRate);
 
   return (
     <section

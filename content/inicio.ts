@@ -8,6 +8,12 @@
 import { brandInfo } from "@/content/marca";
 import type { ImageAsset } from "@/lib/page-content";
 
+/**
+ * Velocidad de todos los videos del sitio: 1 = normal, 0.8 = 20 % más lento
+ * (efecto de cámara lenta suave). Valores entre 0.7 y 1 se ven fluidos.
+ */
+export const VIDEO_PLAYBACK_RATE = 0.8;
+
 export interface HeroContent {
   title: string;
   description: string;

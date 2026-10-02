@@ -2,7 +2,7 @@ import { BrandPillars } from "@/components/home/brand-pillars";
 import { BrandStory } from "@/components/home/brand-story";
 import { WhatsAppCta } from "@/components/page/whatsapp-cta";
 import { AnimatedHero } from "@/components/ui/animated-hero-section-1";
-import { heroContent, homeContact } from "@/content/inicio";
+import { heroContent, homeContact, VIDEO_PLAYBACK_RATE } from "@/content/inicio";
 
 const STORY_SECTION_ID = "historia";
 
@@ -19,6 +19,7 @@ export default function HomePage() {
           portrait: video.portrait || undefined,
         }}
         posterImageUrl={heroContent.posterImageUrl}
+        videoPlaybackRate={VIDEO_PLAYBACK_RATE}
         title={heroContent.title}
         description={heroContent.description}
         ctaButton={heroContent.primaryCta}
