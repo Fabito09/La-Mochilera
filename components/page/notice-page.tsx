@@ -11,6 +11,8 @@ export interface NoticeAction {
 
 interface NoticePageProps {
   eyebrow: string;
+  /** Aviso destacado sobre el título, p. ej. "Próximamente: compras en línea". */
+  highlight?: string;
   title: string;
   intro: string;
   primaryAction: NoticeAction;
@@ -34,11 +36,23 @@ function ActionLink({
 }
 
 // Página breve centrada con un mensaje y uno o dos botones (carrito, cuenta, 404).
-export function NoticePage({ eyebrow, title, intro, primaryAction, secondaryAction }: NoticePageProps) {
+export function NoticePage({
+  eyebrow,
+  highlight,
+  title,
+  intro,
+  primaryAction,
+  secondaryAction,
+}: NoticePageProps) {
   return (
     <main>
       <Container className="flex min-h-[60svh] flex-col items-center justify-center py-24 text-center">
         <span aria-hidden="true" className="logo-mask logo-isotipo block h-12 text-highlight" />
+        {highlight && (
+          <p className="mt-8 rounded-full bg-secondary px-5 py-2 text-xs font-medium uppercase tracking-[0.2em] text-secondary-foreground">
+            {highlight}
+          </p>
+        )}
         <p className="mt-8 text-xs font-medium uppercase tracking-[0.3em] text-secondary">{eyebrow}</p>
         <h1 className="mt-3 max-w-2xl text-balance font-display text-5xl leading-none md:text-6xl">
           {title}

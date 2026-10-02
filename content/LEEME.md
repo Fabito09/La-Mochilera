@@ -14,6 +14,9 @@ Lo que hoy es relleno provisional está marcado con el comentario
 | Un producto: nombre, precio, fotos, tallas, insignias | `productos.ts` | El bloque del producto (se busca por su código, p. ej. `CME01`) |
 | Agregar un producto nuevo | `productos.ts` | Copiar un bloque completo, cambiar código, `slug` y datos |
 | El precio de toda la campaña | `productos.ts` | `CAMPAIGN_PRICE` |
+| Producto sin precio publicado | `productos.ts` | Quitar `priceInColones`: se muestra "Consultar precio" |
+| Colores para elegir al comprar (p. ej. gorros) | `productos.ts` | `colorOptions: ["Vino", "Arena", …]` |
+| Producto sin talla (gorros, accesorios) | `productos.ts` | `sizes: []`: no se muestra el selector |
 | Mostrar un precio anterior tachado | `productos.ts` | Agregar `compareAtPriceInColones: 59_900` al producto |
 | El orden de "Más vendidos" | `productos.ts` | `bestSellerRank` (1 = el primero) |
 | El video o la foto del inicio | `inicio.ts` | `heroContent`: `video.landscape` (computadora), `video.portrait` (celular), `posterImageUrl` |

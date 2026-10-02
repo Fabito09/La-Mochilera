@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductBadges } from "@/components/product/product-badges";
 import { ProductPrice } from "@/components/product/product-price";
-import { productHref, shaftHeightLabels, type Product } from "@/lib/catalog";
+import { productEyebrow, productHref, type Product } from "@/lib/catalog";
 
 interface ProductCardProps {
   product: Product;
@@ -30,13 +30,13 @@ export function ProductCard({ product, isAboveTheFold = false }: ProductCardProp
       <div className="mt-4 flex items-start justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {shaftHeightLabels[product.shaftHeight]}
+            {productEyebrow(product)}
           </p>
           <h3 className="mt-1 font-display text-2xl leading-tight group-hover:underline group-hover:underline-offset-4">
             {product.name}
           </h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            {product.colorName} · {product.leatherType}
+            {[product.colorName, product.leatherType].filter(Boolean).join(" · ")}
           </p>
         </div>
         <ProductPrice product={product} className="shrink-0 pt-5 text-base" />

@@ -38,16 +38,13 @@ export const shopCategories: ShopCategory[] = [
   {
     label: "Accesorios",
     href: "/tienda/accesorios",
-    subcategories: [
-      { label: "Mochilas", href: "/tienda/accesorios/mochilas" },
-      { label: "Cinturones", href: "/tienda/accesorios/cinturones" },
-      { label: "Billeteras", href: "/tienda/accesorios/billeteras" },
-      { label: "Guantes", href: "/tienda/accesorios/guantes" },
-    ],
+    description: "Accesorios de cuero vacuno para el día a día.",
+    subcategories: [],
   },
   {
     label: "Gorros",
     href: "/tienda/gorros",
+    description: "Gorros tejidos en cinco colores, para acompañar sus botas en el frío.",
     subcategories: [],
   },
 ];

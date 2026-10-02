@@ -8,7 +8,15 @@ export type ProductCategory = "botas" | "accesorios" | "gorros";
 /** Coincide con el último tramo de la URL: /tienda/botas/cana-media */
 export type ShaftHeight = "cana-baja" | "cana-media" | "cana-alta" | "urbanas";
 
-export type ColorFamily = "Marrón" | "Miel y camel" | "Negro" | "Gris";
+export type ColorFamily =
+  | "Marrón"
+  | "Miel y camel"
+  | "Negro"
+  | "Gris"
+  | "Vino"
+  | "Verde"
+  | "Mostaza"
+  | "Crema y arena";
 
 export type ProductBadge = "100% cuero" | "Precio especial" | "Nuevo" | "Preventa";
 
@@ -22,23 +30,28 @@ export interface Product {
   slug: string;
   name: string;
   category: ProductCategory;
-  shaftHeight: ShaftHeight;
-  leatherType: string;
+  /** Solo botas. */
+  shaftHeight?: ShaftHeight;
+  /** Solo productos de cuero. */
+  leatherType?: string;
   /** Nombre evocador del color, tal como se muestra al cliente. */
   colorName: string;
-  /** Grupo de color para el filtro del catálogo. */
-  colorFamily: ColorFamily;
+  /** Grupos de color para el filtro del catálogo. */
+  colorFamilies: ColorFamily[];
+  /** Colores para elegir al comprar (p. ej. gorros). Sin valor = color único. */
+  colorOptions?: string[];
   material: string;
-  closure: string;
-  sole: string;
-  toe: string;
-  priceInColones: number;
+  closure?: string;
+  sole?: string;
+  toe?: string;
+  /** Sin valor = se muestra "Consultar precio". */
+  priceInColones?: number;
   /** Precio anterior, se muestra tachado. */
   compareAtPriceInColones?: number;
   badges: ProductBadge[];
   /** La primera es la foto principal. */
   images: ProductImage[];
-  /** Tallas EU disponibles. */
+  /** Tallas EU disponibles. Vacío = producto sin talla (no muestra selector). */
   sizes: number[];
   /** Orden en "Más vendidos" (1 = el más vendido). */
   bestSellerRank: number;
@@ -54,8 +67,22 @@ export const shaftHeightLabels: Record<ShaftHeight, string> = {
   urbanas: "Bota urbana",
 };
 
+/** Nombre del tipo de producto, en singular. */
+export const categoryLabels: Record<ProductCategory, string> = {
+  botas: "Bota",
+  accesorios: "Accesorio",
+  gorros: "Gorro",
+};
+
 export function isShaftHeight(value: string): value is ShaftHeight {
   return value in shaftHeightLabels;
+}
+
+/** Texto corto sobre el nombre: la altura de caña en botas, el tipo en el resto. */
+export function productEyebrow(product: Product): string {
+  return product.shaftHeight
+    ? shaftHeightLabels[product.shaftHeight]
+    : categoryLabels[product.category];
 }
 
 export function findProductByCode(code: string): Product {
@@ -76,12 +103,15 @@ export function productsInCategory(category: ProductCategory): Product[] {
   return products.filter((product) => product.category === category);
 }
 
-/** Productos parecidos: primero la misma altura de caña, luego el resto. */
+/** Productos parecidos: primero la misma categoría y altura de caña, luego el resto. */
 export function relatedProducts(product: Product, limit: number): Product[] {
-  const others = products.filter((candidate) => candidate.code !== product.code);
-  const sameShaft = others.filter((candidate) => candidate.shaftHeight === product.shaftHeight);
-  const differentShaft = others.filter((candidate) => candidate.shaftHeight !== product.shaftHeight);
-  return [...sameShaft, ...differentShaft].slice(0, limit);
+  const similarity = (candidate: Product) =>
+    (candidate.category === product.category ? 2 : 0) +
+    (candidate.shaftHeight && candidate.shaftHeight === product.shaftHeight ? 1 : 0);
+  return products
+    .filter((candidate) => candidate.code !== product.code)
+    .sort((a, b) => similarity(b) - similarity(a))
+    .slice(0, limit);
 }
 
 /** Mismo modelo en otros colores (productos con el mismo nombre). */
@@ -95,7 +125,7 @@ function normalizeForSearch(text: string): string {
   return text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 }
 
-/** Busca por nombre, color, cuero, altura de caña o código; cada palabra debe coincidir. */
+/** Busca por nombre, color, cuero, tipo o código; cada palabra debe coincidir. */
 export function searchProducts(query: string): Product[] {
   const words = normalizeForSearch(query).split(/\s+/).filter(Boolean);
   if (words.length === 0) return [];
@@ -106,10 +136,13 @@ export function searchProducts(query: string): Product[] {
         product.name,
         product.code,
         product.colorName,
-        product.colorFamily,
+        ...product.colorFamilies,
+        ...(product.colorOptions ?? []),
         product.leatherType,
-        shaftHeightLabels[product.shaftHeight],
-      ].join(" "),
+        productEyebrow(product),
+      ]
+        .filter(Boolean)
+        .join(" "),
     );
     return words.every((word) => searchableText.includes(word));
   });

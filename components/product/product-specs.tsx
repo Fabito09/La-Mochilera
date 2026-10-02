@@ -6,6 +6,7 @@ interface ProductSpecsProps {
   className?: string;
 }
 
+// Solo se muestran los datos que el producto tiene (un gorro no tiene suela).
 export function ProductSpecs({ product, className }: ProductSpecsProps) {
   const specs = [
     ["Material", product.material],
@@ -13,7 +14,7 @@ export function ProductSpecs({ product, className }: ProductSpecsProps) {
     ["Suela", product.sole],
     ["Cierre", product.closure],
     ["Punta", product.toe],
-  ];
+  ].filter((spec): spec is [string, string] => Boolean(spec[1]));
 
   return (
     <dl className={cn("divide-y border-y text-sm", className)}>

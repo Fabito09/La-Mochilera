@@ -9,6 +9,11 @@ interface ProductPriceProps {
 
 export function ProductPrice({ product, className }: ProductPriceProps) {
   const { priceInColones, compareAtPriceInColones } = product;
+
+  if (priceInColones === undefined) {
+    return <p className={cn("font-medium", className)}>Consultar precio</p>;
+  }
+
   const hasDiscount =
     compareAtPriceInColones !== undefined && compareAtPriceInColones > priceInColones;
 

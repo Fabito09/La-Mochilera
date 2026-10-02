@@ -14,14 +14,37 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { products } from "@/content/productos";
-import { shopLink } from "@/content/navegacion";
+import { shopCategories, shopLink } from "@/content/navegacion";
 import {
   colorVariantsOf,
   findProductBySlug,
+  productEyebrow,
   productHref,
   relatedProducts,
   shaftHeightLabels,
+  type Product,
 } from "@/lib/catalog";
+
+/** Segundo tramo de la miga de pan: la altura de caña en botas, la categoría en el resto. */
+function parentCrumb(product: Product) {
+  if (product.shaftHeight) {
+    return {
+      label: shaftHeightLabels[product.shaftHeight],
+      href: `${shopLink.href}/botas/${product.shaftHeight}`,
+    };
+  }
+  const href = `${shopLink.href}/${product.category}`;
+  const category = shopCategories.find((candidate) => candidate.href === href);
+  return { label: category?.label ?? productEyebrow(product), href };
+}
+
+function metaDescription(product: Product): string {
+  const leather = product.leatherType ? ` en cuero ${product.leatherType}` : "";
+  const colors = product.colorOptions
+    ? `en ${product.colorOptions.length} colores`
+    : `color ${product.colorName.toLowerCase()}`;
+  return `${product.name}${leather}, ${colors}. ${product.material}. Envíos a toda Costa Rica.`;
+}
 
 const RELATED_PRODUCTS_LIMIT = 4;
 
@@ -38,7 +61,7 @@ export async function generateMetadata({ params }: PageProps<"/producto/[slug]">
   const [mainImage] = product.images;
   return {
     title: `${product.name} ${product.colorName}`,
-    description: `${product.name} en cuero ${product.leatherType}, color ${product.colorName.toLowerCase()}. ${shaftHeightLabels[product.shaftHeight]} de cuero vacuno. Envíos a toda Costa Rica.`,
+    description: metaDescription(product),
     openGraph: { images: [{ url: mainImage.src, alt: mainImage.alt }] },
   };
 }
@@ -49,7 +72,7 @@ export default async function ProductPage({ params }: PageProps<"/producto/[slug
   if (!product) notFound();
 
   const colorVariants = colorVariantsOf(product);
-  const shaftLabel = shaftHeightLabels[product.shaftHeight];
+  const eyebrow = productEyebrow(product);
 
   return (
     <main className="pt-10">
@@ -58,7 +81,7 @@ export default async function ProductPage({ params }: PageProps<"/producto/[slug
         <Breadcrumbs
           items={[
             { label: shopLink.label, href: shopLink.href },
-            { label: shaftLabel, href: `${shopLink.href}/botas/${product.shaftHeight}` },
+            parentCrumb(product),
             { label: product.name, href: productHref(product) },
           ]}
         />
@@ -69,15 +92,18 @@ export default async function ProductPage({ params }: PageProps<"/producto/[slug
           <div className="lg:sticky lg:top-[calc(var(--header-height)+1.5rem)] lg:self-start">
             <ProductBadges badges={product.badges} />
             <p className="mt-4 text-xs uppercase tracking-[0.3em] text-secondary">
-              {shaftLabel} · Código {product.code}
+              {eyebrow} · Código {product.code}
             </p>
             <h1 className="mt-2 font-display text-5xl leading-none md:text-6xl">{product.name}</h1>
             <ProductPrice product={product} className="mt-4 text-2xl" />
 
             <div className="mt-6">
-              <p className="text-sm">
-                <span className="font-medium">Color:</span> {product.colorName}
-              </p>
+              {/* Con colores para elegir, el selector de compra ya los muestra. */}
+              {!product.colorOptions && (
+                <p className="text-sm">
+                  <span className="font-medium">Color:</span> {product.colorName}
+                </p>
+              )}
               {colorVariants.length > 0 && (
                 <ul className="mt-3 flex gap-2" aria-label="Otros colores del mismo modelo">
                   <li>

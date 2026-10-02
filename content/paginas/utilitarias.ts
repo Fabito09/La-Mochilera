@@ -4,6 +4,7 @@
 // defina la plataforma de e-commerce. Hoy explican que la compra es por WhatsApp.
 
 export const cartPage = {
+  highlight: "Próximamente: compras en línea",
   eyebrow: "Carrito",
   title: "Su carrito",
   intro:

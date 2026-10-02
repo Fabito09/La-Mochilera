@@ -71,16 +71,19 @@ export function toggleFilterValue<Group extends FilterGroup>(
 function matchesPriceRanges(product: Product, priceRangeIds: string[]): boolean {
   return priceRanges
     .filter((range) => priceRangeIds.includes(range.id))
-    .some((range) => product.priceInColones >= range.min && product.priceInColones < range.max);
+    .some((range) => {
+      const price = product.priceInColones;
+      return price !== undefined && price >= range.min && price < range.max;
+    });
 }
 
 /** Dentro de un grupo alcanza con cumplir una opción; entre grupos, todas. */
 export function filterProducts(products: Product[], filters: CatalogFilters): Product[] {
   return products.filter((product) => {
     const { shaftHeights, leatherTypes, colorFamilies, sizes, priceRangeIds } = filters;
-    if (shaftHeights.length > 0 && !shaftHeights.includes(product.shaftHeight)) return false;
-    if (leatherTypes.length > 0 && !leatherTypes.includes(product.leatherType)) return false;
-    if (colorFamilies.length > 0 && !colorFamilies.includes(product.colorFamily)) return false;
+    if (shaftHeights.length > 0 && !(product.shaftHeight && shaftHeights.includes(product.shaftHeight))) return false;
+    if (leatherTypes.length > 0 && !(product.leatherType && leatherTypes.includes(product.leatherType))) return false;
+    if (colorFamilies.length > 0 && !product.colorFamilies.some((family) => colorFamilies.includes(family))) return false;
     if (sizes.length > 0 && !sizes.some((size) => product.sizes.includes(size))) return false;
     if (priceRangeIds.length > 0 && !matchesPriceRanges(product, priceRangeIds)) return false;
     return true;
@@ -94,10 +97,11 @@ export function sortProducts(products: Product[], sort: SortOption): Product[] {
       return sorted.sort((a, b) => b.releasedOn.localeCompare(a.releasedOn));
     case "mas-vendidos":
       return sorted.sort((a, b) => a.bestSellerRank - b.bestSellerRank);
+    // Los productos sin precio publicado van al final en ambos sentidos.
     case "precio-asc":
-      return sorted.sort((a, b) => a.priceInColones - b.priceInColones);
+      return sorted.sort((a, b) => (a.priceInColones ?? Infinity) - (b.priceInColones ?? Infinity));
     case "precio-desc":
-      return sorted.sort((a, b) => b.priceInColones - a.priceInColones);
+      return sorted.sort((a, b) => (b.priceInColones ?? -Infinity) - (a.priceInColones ?? -Infinity));
   }
 }
 
@@ -116,8 +120,8 @@ export function collectFilterOptions(products: Product[]): FilterOptions {
     shaftHeights: (Object.keys(shaftHeightLabels) as ShaftHeight[]).filter((shaftHeight) =>
       products.some((product) => product.shaftHeight === shaftHeight),
     ),
-    leatherTypes: unique(products.map((product) => product.leatherType)).sort(),
-    colorFamilies: unique(products.map((product) => product.colorFamily)).sort(),
+    leatherTypes: unique(products.flatMap((product) => product.leatherType ?? [])).sort(),
+    colorFamilies: unique(products.flatMap((product) => product.colorFamilies)).sort(),
     sizes: unique(products.flatMap((product) => product.sizes)).sort((a, b) => a - b),
   };
 }

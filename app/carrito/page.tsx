@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 export default function CartPage() {
   return (
     <NoticePage
+      highlight={cartPage.highlight}
       eyebrow={cartPage.eyebrow}
       title={cartPage.title}
       intro={cartPage.intro}

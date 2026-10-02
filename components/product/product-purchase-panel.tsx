@@ -2,82 +2,85 @@
 
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
+import { OptionPicker } from "@/components/product/option-picker";
 import { SizeGuideDialog } from "@/components/product/size-guide-dialog";
 import { Button } from "@/components/ui/button";
 import { whatsappUrlWithMessage } from "@/content/marca";
 import type { Product } from "@/lib/catalog";
-import { cn } from "@/lib/utils";
 
 interface ProductPurchasePanelProps {
   product: Product;
 }
 
-function purchaseMessage(product: Product, selectedSize: number | null): string {
-  const productReference = `la bota ${product.name}, color ${product.colorName} (${product.code})`;
-  return selectedSize
-    ? `Hola, quiero comprar ${productReference} en talla ${selectedSize}.`
-    : `Hola, me interesa ${productReference}. ¿Qué tallas tienen disponibles?`;
+interface PurchaseSelection {
+  size: string | null;
+  color: string | null;
+}
+
+/** Opciones que el producto tiene y la persona todavía no eligió. */
+function missingChoices(product: Product, selection: PurchaseSelection): string[] {
+  const missing: string[] = [];
+  if (product.sizes.length > 0 && !selection.size) missing.push("tallas");
+  if (product.colorOptions && !selection.color) missing.push("colores");
+  return missing;
+}
+
+function purchaseMessage(product: Product, selection: PurchaseSelection): string {
+  const color = selection.color ?? (product.colorOptions ? null : product.colorName);
+  const details = [color && `color ${color}`, selection.size && `talla ${selection.size}`]
+    .filter(Boolean)
+    .join(", ");
+  const reference = `${product.name} (${product.code})${details ? `, ${details}` : ""}`;
+  const missing = missingChoices(product, selection);
+  const priceQuestion = product.priceInColones === undefined ? " ¿Me confirma el precio?" : "";
+
+  return missing.length > 0
+    ? `Hola, me interesa ${reference}. ¿Qué ${missing.join(" y ")} tienen disponibles?${priceQuestion}`
+    : `Hola, quiero comprar ${reference}.${priceQuestion}`;
 }
 
 // Hoy la marca vende por WhatsApp (así lo indica su catálogo). Cuando se
 // defina la plataforma de e-commerce, este panel suma "Añadir al carrito".
 export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
-  const [selectedSize, setSelectedSize] = useState<number | null>(null);
+  const [selection, setSelection] = useState<PurchaseSelection>({ size: null, color: null });
+  const missing = missingChoices(product, selection);
 
   return (
-    <div className="mt-8">
-      <fieldset>
-        <legend className="sr-only">Talla (EU)</legend>
-        <div className="flex items-center justify-between">
-          <p aria-hidden="true" className="text-sm font-medium">
-            Talla (EU){selectedSize && <span className="text-muted-foreground">: {selectedSize}</span>}
-          </p>
-          <SizeGuideDialog />
-        </div>
-        <div className="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-7">
-          {product.sizes.map((size) => {
-            const inputId = `talla-${size}`;
-            const isSelected = selectedSize === size;
-            return (
-              <div key={size}>
-                <input
-                  id={inputId}
-                  type="radio"
-                  name="talla"
-                  value={size}
-                  checked={isSelected}
-                  onChange={() => setSelectedSize(size)}
-                  className="peer sr-only"
-                />
-                <label
-                  htmlFor={inputId}
-                  className={cn(
-                    "flex h-11 cursor-pointer items-center justify-center rounded-sm border text-sm transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2",
-                    isSelected
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-input hover:bg-accent",
-                  )}
-                >
-                  {size}
-                </label>
-              </div>
-            );
-          })}
-        </div>
-      </fieldset>
+    <div className="mt-8 space-y-6">
+      {product.colorOptions && (
+        <OptionPicker
+          legend="Color"
+          name="color"
+          options={product.colorOptions}
+          selected={selection.color}
+          onSelect={(color) => setSelection((current) => ({ ...current, color }))}
+          gridClassName="grid-cols-2 sm:grid-cols-3"
+        />
+      )}
 
-      <Button asChild size="lg" className="mt-6 w-full">
+      {product.sizes.length > 0 && (
+        <OptionPicker
+          legend="Talla (EU)"
+          name="talla"
+          options={product.sizes.map(String)}
+          selected={selection.size}
+          onSelect={(size) => setSelection((current) => ({ ...current, size }))}
+          aside={<SizeGuideDialog />}
+        />
+      )}
+
+      <Button asChild size="lg" className="w-full">
         <a
-          href={whatsappUrlWithMessage(purchaseMessage(product, selectedSize))}
+          href={whatsappUrlWithMessage(purchaseMessage(product, selection))}
           target="_blank"
           rel="noopener noreferrer"
         >
           <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
-          {selectedSize ? `Comprar talla ${selectedSize} por WhatsApp` : "Consultar tallas por WhatsApp"}
+          {missing.length > 0 ? `Consultar ${missing.join(" y ")} por WhatsApp` : "Comprar por WhatsApp"}
         </a>
       </Button>
       {!product.isAvailable && (
-        <p className="mt-3 text-sm text-muted-foreground">
+        <p className="text-sm text-muted-foreground">
           Este modelo está agotado por ahora. Escríbanos para saber cuándo vuelve.
         </p>
       )}
