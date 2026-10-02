@@ -18,8 +18,7 @@
 :root {
   --radius: 0.25rem;
 
-  /* Alturas fijas del encabezado (el header se superpone al hero) */
-  --announcement-height: 2.5rem;
+  /* Altura fija del encabezado (se superpone al hero) */
   --header-height: 5rem;
 
   /* Superficies y texto */
@@ -55,9 +54,6 @@
   --input: #614b32;
   --ring: #847c1f;
 
-  /* Barra de anuncios */
-  --announcement: #2a321b;
-  --announcement-foreground: #f6f3e4;
 
   /* Contenido sobre foto/video (hero, banners) */
   --on-media: #f6f3e4;
@@ -95,8 +91,6 @@
   --color-highlight: var(--highlight);
   --color-forest: var(--forest);
   --color-forest-foreground: var(--forest-foreground);
-  --color-announcement: var(--announcement);
-  --color-announcement-foreground: var(--announcement-foreground);
   --color-on-media: var(--on-media);
   --color-overlay: var(--overlay);
   --color-glass: var(--glass);

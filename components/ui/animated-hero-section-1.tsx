@@ -75,7 +75,7 @@ export function AnimatedHero({
     <section
       aria-labelledby="hero-title"
       className={cn(
-        "relative flex min-h-[calc(100svh-var(--announcement-height))] w-full flex-col justify-center overflow-hidden bg-overlay pt-(--header-height)",
+        "relative flex min-h-svh w-full flex-col justify-center overflow-hidden bg-overlay pt-(--header-height)",
         className,
       )}
     >

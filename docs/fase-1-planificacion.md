@@ -172,7 +172,6 @@ queda fijo abajo.
 | Botón principal / secciones oscuras / footer | `#2a321b` verde bosque | `--primary`, `--forest` | crema encima 12:1 |
 | Botón secundario / etiquetas | `#565113` oliva oscuro | `--secondary` | 7.3:1 con crema |
 | Detalle de marca (íconos, líneas, isotipo) | `#847c1f` oliva dorado | `--highlight`, `--ring` | 3.9:1: **solo texto grande o detalles** |
-| Barra de anuncio | `#2a321b` con texto crema | `--announcement` | 12:1 |
 | Degradado sobre fotos | `#1c1a19` (sombras de las fotos) | `--overlay` | — |
 
 Única excepción fuera de la guía: un rojo funcional (`#9b2c1f`) solo para

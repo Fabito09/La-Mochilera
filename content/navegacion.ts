@@ -18,9 +18,6 @@ export interface FeaturedProduct extends NavLink {
   imageAlt: string;
 }
 
-export const announcementMessage =
-  "Envíos a toda Costa Rica · Showroom en San Pedro con cita previa";
-
 export const shopLink: NavLink = { label: "Tienda", href: "/tienda" };
 
 export const shopCategories: ShopCategory[] = [

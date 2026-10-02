@@ -23,7 +23,6 @@ Lo que hoy es relleno provisional está marcado con el comentario
 | Origen de cada material | `inicio.ts` | `ORIGIN_NOT_CONFIRMED` o el campo `origin` de cada uno |
 | Textos de pilares y materiales | `inicio.ts` | `brandPillars`, `materialComponents` |
 | WhatsApp, Instagram, showroom, envíos | `marca.ts` | `brandInfo` |
-| Barra de anuncio superior | `navegacion.ts` | `announcementMessage` |
 | Menú, categorías y subcategorías | `navegacion.ts` | `shopCategories`, `mainLinks` |
 | Textos de la tienda y banner promocional | `tienda.ts` | `catalogTexts`, `campaignPromoBanner` |
 | Tabla de tallas y cómo medir el pie | `tallas.ts` | `sizeGuideTable`, `footMeasuringSteps` |

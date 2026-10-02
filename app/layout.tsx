@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Roboto } from "next/font/google";
-import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { MotionProvider } from "@/components/layout/motion-provider";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { StoreJsonLd } from "@/components/layout/store-json-ld";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { siteUrl } from "@/content/marca";
-import { announcementMessage } from "@/content/navegacion";
 import "./globals.css";
 
 // Guía de Marca: Roboto para cuerpos de texto, VINCENTE para titulares.
@@ -66,7 +64,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <StoreJsonLd />
         <MotionProvider>
-          <AnnouncementBar message={announcementMessage} />
           <SiteHeader />
           <div id="contenido" tabIndex={-1} className="flex-1 focus:outline-none">
             {children}
