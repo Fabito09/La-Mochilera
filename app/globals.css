@@ -113,6 +113,13 @@
     @apply border-border;
   }
 
+  /* Color del "rebote" al deslizar más allá del final en celulares: igual al
+     pie de página, para que no aparezca una franja clara debajo. El contenido
+     usa el fondo crema del body. */
+  html {
+    background-color: var(--forest);
+  }
+
   body {
     @apply bg-background font-sans text-foreground;
   }

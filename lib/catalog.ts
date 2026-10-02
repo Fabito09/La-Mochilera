@@ -18,7 +18,7 @@ export type ColorFamily =
   | "Mostaza"
   | "Crema y arena";
 
-export type ProductBadge = "100% cuero" | "Precio especial" | "Nuevo" | "Preventa";
+export type ProductBadge = "Precio especial" | "Nuevo" | "Preventa";
 
 export interface ProductImage {
   src: string;

@@ -17,7 +17,7 @@ export function BrandLogo({ className }: BrandLogoProps) {
         className,
       )}
     >
-      <span aria-hidden="true" className="logo-mask logo-horizontal block h-8 sm:h-9" />
+      <span aria-hidden="true" className="logo-mask logo-horizontal block h-7 min-[360px]:h-8 sm:h-9" />
     </Link>
   );
 }

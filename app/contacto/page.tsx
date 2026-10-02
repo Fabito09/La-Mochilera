@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/page-content";
 
 export const metadata: Metadata = pageMetadata(contactPage);
 
-const channelLinkClassName = "underline underline-offset-4 hover:text-muted-foreground";
+const channelLinkClassName = "inline-block py-1 underline underline-offset-4 hover:text-muted-foreground";
 
 export default function ContactPage() {
   const { showroom } = brandInfo;

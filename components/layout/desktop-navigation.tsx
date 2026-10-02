@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 const MEGA_MENU_ID = "mega-menu-tienda";
 
 const navItemClassName =
-  "rounded-sm text-sm font-medium tracking-wide opacity-85 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-4 focus-visible:ring-offset-transparent";
+  "rounded-sm py-2 text-sm font-medium tracking-wide opacity-85 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-4 focus-visible:ring-offset-transparent";
 
 interface DesktopNavigationProps {
   isShopMenuOpen: boolean;

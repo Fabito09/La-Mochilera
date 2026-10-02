@@ -14,7 +14,7 @@ export function ProductBadges({ badges, className }: ProductBadgesProps) {
       {badges.map((badge) => (
         <li
           key={badge}
-          className="rounded-sm border border-border bg-background/90 px-2 py-1 text-[0.6875rem] font-medium uppercase tracking-wider text-foreground"
+          className="rounded-sm border border-border bg-background/90 px-2 py-1 text-xs font-medium uppercase tracking-wider text-foreground"
         >
           {badge}
         </li>

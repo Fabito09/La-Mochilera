@@ -8,7 +8,7 @@ import { sizeGuideNotice } from "@/content/tallas";
 export function SizeGuideDialog() {
   return (
     <Dialog.Root>
-      <Dialog.Trigger className="inline-flex items-center gap-1.5 text-sm underline underline-offset-4 hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+      <Dialog.Trigger className="inline-flex items-center gap-1.5 py-1 text-sm underline underline-offset-4 hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
         <Ruler className="h-4 w-4" aria-hidden="true" />
         Guía de tallas
       </Dialog.Trigger>

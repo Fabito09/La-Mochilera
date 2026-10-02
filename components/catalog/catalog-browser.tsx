@@ -69,12 +69,12 @@ export function CatalogBrowser({ products, presetShaftHeight }: CatalogBrowserPr
         </div>
       </aside>
 
-      <div>
+      <div className="min-w-0">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b pb-4">
           <p aria-live="polite" className="text-sm text-muted-foreground">
             {matchingProducts.length} {matchingProducts.length === 1 ? "producto" : "productos"}
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 items-center gap-3">
             <MobileFiltersDialog
               activeFilterCount={activeFilterCount}
               resultCount={matchingProducts.length}
@@ -88,7 +88,7 @@ export function CatalogBrowser({ products, presetShaftHeight }: CatalogBrowserPr
               id="orden-catalogo"
               value={sort}
               onChange={(event) => setSort(event.target.value as SortOption)}
-              className="h-10 rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-10 min-w-0 rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>

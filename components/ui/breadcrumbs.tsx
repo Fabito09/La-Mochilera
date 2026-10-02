@@ -37,7 +37,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
                 </span>
               ) : (
                 <>
-                  <Link href={item.href} className="hover:text-foreground hover:underline">
+                  <Link href={item.href} className="inline-block py-1 hover:text-foreground hover:underline">
                     {item.label}
                   </Link>
                   <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />

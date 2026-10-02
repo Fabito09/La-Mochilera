@@ -45,7 +45,7 @@ function FilterFieldset({
   return (
     <fieldset className="border-t py-5">
       <legend className="float-left mb-3 w-full font-display text-xl">{legend}</legend>
-      <ul className="clear-both space-y-2.5">
+      <ul className="clear-both space-y-0.5">
         {options.map((option, index) => {
           const inputId = `${idPrefix}-${groupId}-${index}`;
           return (
@@ -57,7 +57,7 @@ function FilterFieldset({
                 onChange={option.onChange}
                 className="h-4 w-4 rounded-sm border-input accent-primary"
               />
-              <label htmlFor={inputId} className="text-sm">
+              <label htmlFor={inputId} className="flex min-h-8 flex-1 cursor-pointer items-center text-sm">
                 {option.label}
               </label>
             </li>
@@ -79,7 +79,7 @@ export function FilterPanel({ options, filters, onToggle, onClear, idPrefix }: F
           <button
             type="button"
             onClick={onClear}
-            className="text-sm underline underline-offset-4 hover:text-muted-foreground"
+            className="py-1 text-sm underline underline-offset-4 hover:text-muted-foreground"
           >
             Limpiar ({activeFilterCount})
           </button>

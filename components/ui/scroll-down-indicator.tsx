@@ -15,7 +15,7 @@ export function ScrollDownIndicator({ targetId, className }: ScrollDownIndicator
       href={`#${targetId}`}
       aria-label="Desplazarse al contenido"
       className={cn(
-        "flex flex-col items-center gap-1 rounded-sm text-[0.625rem] font-medium uppercase tracking-[0.3em] text-on-media/80 transition-colors hover:text-on-media focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-media",
+        "flex flex-col items-center gap-1 rounded-sm text-xs font-medium uppercase tracking-[0.3em] text-on-media/80 transition-colors hover:text-on-media focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-media",
         className,
       )}
     >

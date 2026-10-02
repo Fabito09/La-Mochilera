@@ -41,7 +41,7 @@ export function SiteHeader({ cartItemCount = 0 }: SiteHeaderProps) {
           : "border-b border-transparent bg-transparent text-on-media",
       )}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-6 md:px-12">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-3 px-4 sm:gap-6 sm:px-6 md:px-12">
         <div className="flex items-center gap-2">
           <MobileMenu />
           <BrandLogo />

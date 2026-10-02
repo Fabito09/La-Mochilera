@@ -156,48 +156,6 @@ export const materialComponents: MaterialComponent[] = [
   },
 ];
 
-export interface ProductHotspot {
-  /** Posición en porcentaje sobre la foto. */
-  x: number;
-  y: number;
-  title: string;
-  description: string;
-}
-
-export const featuredProductShowcase = {
-  productCode: "CFG01",
-  image: {
-    src: "/brand/productos/cfg01-grande.webp",
-    alt: "Bota de caña media en cuero Antique marrón miel junto a un bolso y un cinturón de cuero",
-  },
-  hotspots: [
-    {
-      x: 50,
-      y: 38,
-      title: "Ojalillos y cordones",
-      description: "Ojalillos metálicos y cordones encerados para un ajuste firme.",
-    },
-    {
-      x: 58,
-      y: 30,
-      title: "100% cuero",
-      description: "Cuero vacuno con acabado liso y ligero efecto aceitado.",
-    },
-    {
-      x: 20,
-      y: 78,
-      title: "Puntera reforzada",
-      description: "Puntera con doble costura que protege la zona de más desgaste.",
-    },
-    {
-      x: 68,
-      y: 80,
-      title: "Suela TR",
-      description: "Flexible, antiderrapante y con tacón bajo integrado.",
-    },
-  ] satisfies ProductHotspot[],
-};
-
 export const communityImages: ImageAsset[] = [
   { src: "/brand/productos/cmn02.webp", alt: "Bota de nubuck camel" },
   { src: "/brand/detalles/forro.webp", alt: "Interior acolchado de una bota" },

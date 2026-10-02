@@ -35,7 +35,7 @@ export const products: Product[] = [
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redondeada",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/cme01.webp", alt: "Botín Summit de nubuck encerado marrón cálido, vista lateral" },
       { src: "/brand/productos/cme01-frente.webp", alt: "Botín Summit visto de frente, con puntera de doble costura" },
@@ -61,7 +61,7 @@ export const products: Product[] = [
     sole: "Sintética tipo TR, flexible y resistente, antiderrapante con tacón bajo integrado",
     toe: "Redondeada",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/cfg01-grande.webp", alt: "Bota Caña Media Antique marrón miel junto a un bolso de cuero" },
       { src: "/brand/productos/cfg01-espalda.webp", alt: "Par de botas Antique vistas desde el talón" },
@@ -88,7 +88,7 @@ export const products: Product[] = [
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redonda lisa",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/cmh02.webp", alt: "Bota Crazy Horse marrón oliva con acabado envejecido, vista lateral" },
       { src: "/brand/detalles/cuero-crazy-horse.webp", alt: "Puntera de cuero Crazy Horse con doble costura" },
@@ -112,7 +112,7 @@ export const products: Product[] = [
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redondeada",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/cna01-cognac.webp", alt: "Bota Duna color cognac con cierre lateral, vista lateral" },
       { src: "/brand/productos/cna01-cognac-frente.webp", alt: "Bota Duna cognac vista de frente" },
@@ -138,7 +138,7 @@ export const products: Product[] = [
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redondeada",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/cna01-gris-topo.webp", alt: "Bota de caña alta en nubuck encerado gris topo" },
     ],
@@ -161,7 +161,7 @@ export const products: Product[] = [
     sole: "Sintética dentada, antiderrapante",
     toe: "Redonda lisa",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/cmn01.webp", alt: "Bota de nubuck marrón con cuello acolchado negro" },
     ],
@@ -184,7 +184,7 @@ export const products: Product[] = [
     sole: "Sintética dentada, antiderrapante",
     toe: "Redonda lisa",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/cmn02.webp", alt: "Bota de nubuck camel con cuello acolchado vino" },
     ],
@@ -207,7 +207,7 @@ export const products: Product[] = [
     sole: "Sintética antideslizante, tacón bajo",
     toe: "Redonda lisa",
     priceInColones: CAMPAIGN_PRICE,
-    badges: ["100% cuero"],
+    badges: [],
     images: [
       { src: "/brand/productos/ch01.webp", alt: "Botín de caña baja en cuero Crazy Honey camel claro" },
     ],

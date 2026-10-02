@@ -47,7 +47,7 @@ export function CommunityInstagram() {
             href={brandInfo.instagram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4"
+            className="inline-flex items-center gap-2 py-2 text-sm font-medium underline underline-offset-4"
           >
             <InstagramIcon className="h-4 w-4" />
             Síganos en Instagram
