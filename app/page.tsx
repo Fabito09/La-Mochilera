@@ -14,7 +14,10 @@ export default function HomePage() {
   return (
     <main>
       <AnimatedHero
-        backgroundVideoSrc={{ mp4: video.mp4 || undefined, webm: video.webm || undefined }}
+        backgroundVideoSrc={{
+          landscape: video.landscape || undefined,
+          portrait: video.portrait || undefined,
+        }}
         posterImageUrl={heroContent.posterImageUrl}
         title={heroContent.title}
         description={heroContent.description}

@@ -36,7 +36,7 @@ export function GalleryMediaTile({ media, sizes }: GalleryMediaTileProps) {
           className="h-full w-full object-cover"
           {...playbackEvents}
         >
-          <source src={media.src} />
+          <source src={media.src} type="video/mp4" />
         </video>
         <VideoPlaybackToggle
           isPlaying={isPlaying}

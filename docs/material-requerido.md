@@ -11,6 +11,7 @@ sitio muestra un hueco rotulado `[… — pendiente de material de marca]`.
 | Guía de Marca (PDF) | Paleta, tipografía y reglas del logo → `app/globals.css` |
 | Logo horizontal y secundario (PNG blanco, 8334 px) | Header y footer (`public/brand/logo/`), favicon con el isotipo |
 | 3 fotos de campaña (DSC04541, 04560, 04570) | Hero, mega menú, galería, historia, bitácora |
+| 2 videos verticales ProRes (VIDEO WEB 1 y 2, 1/10/2026) | Portada (taller) e historia/galería (aire libre), comprimidos de 700 MB a ~9 MB |
 | Catálogo "Campaña 1 2026" (PDF) | Datos de 10 productos, guía de tallas, contacto. Fotos de producto y detalles recortadas de sus páginas |
 
 ## Pendiente
@@ -19,7 +20,6 @@ sitio muestra un hueco rotulado `[… — pendiente de material de marca]`.
 
 | Material | Formato ideal | Por qué |
 |----------|---------------|---------|
-| **Video del hero** | MP4 o MOV original, 1920×1080 o mayor, 15–40 s, en bucle | Hoy el hero usa la foto como póster. Planos de ruta, sendero o montaña con el producto en uso. |
 | **Logo en SVG** (versión color y una tinta) | SVG vectorial | El PNG funciona, pero el SVG pesa menos y se ve nítido a cualquier tamaño. |
 | **Fuente VINCENTE** con licencia web | .woff2 | Hoy se usa Instrument Serif como sustituto. |
 

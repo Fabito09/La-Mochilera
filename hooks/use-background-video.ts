@@ -3,18 +3,19 @@
 import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import { useReducedMotion } from "framer-motion";
 
-const DESKTOP_MEDIA_QUERY = "(min-width: 768px)";
 const SLOW_CONNECTION_TYPES = ["slow-2g", "2g"];
 
-interface NetworkInformationLike {
+interface NetworkInformationLike extends EventTarget {
   saveData?: boolean;
   effectiveType?: string;
 }
 
+function getConnection(): NetworkInformationLike | undefined {
+  return (navigator as Navigator & { connection?: NetworkInformationLike }).connection;
+}
+
 function isConnectionConstrained(): boolean {
-  const { connection } = navigator as Navigator & {
-    connection?: NetworkInformationLike;
-  };
+  const connection = getConnection();
   if (!connection) return false;
   return (
     Boolean(connection.saveData) ||
@@ -22,40 +23,38 @@ function isConnectionConstrained(): boolean {
   );
 }
 
-function subscribeToViewport(onChange: () => void) {
-  const desktopMedia = window.matchMedia(DESKTOP_MEDIA_QUERY);
-  desktopMedia.addEventListener("change", onChange);
-  return () => desktopMedia.removeEventListener("change", onChange);
+function subscribeToConnection(onChange: () => void) {
+  const connection = getConnection();
+  connection?.addEventListener("change", onChange);
+  return () => connection?.removeEventListener("change", onChange);
 }
 
-function isDeviceSuitableForVideo(): boolean {
-  return (
-    window.matchMedia(DESKTOP_MEDIA_QUERY).matches && !isConnectionConstrained()
-  );
+function isConnectionSuitableForVideo(): boolean {
+  return !isConnectionConstrained();
 }
 
-// En el servidor nunca se renderiza el video: así el móvil no lo descarga.
-function isDeviceSuitableOnServer(): boolean {
+// En el servidor nunca se renderiza el video: se decide ya en el navegador.
+function isConnectionSuitableOnServer(): boolean {
   return false;
 }
 
 /**
- * Decide si el video de fondo debe mostrarse (pantalla grande, conexión
- * rápida y sin preferencia de movimiento reducido) y expone el control de
- * pausa/reproducción.
+ * Decide si el video de fondo debe mostrarse (en cualquier pantalla, salvo con
+ * ahorro de datos, conexión lenta o preferencia de movimiento reducido) y
+ * expone el control de pausa/reproducción.
  */
 export function useBackgroundVideo(hasVideoSource: boolean) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const prefersReducedMotion = useReducedMotion();
-  const isDeviceSuitable = useSyncExternalStore(
-    subscribeToViewport,
-    isDeviceSuitableForVideo,
-    isDeviceSuitableOnServer,
+  const isConnectionSuitable = useSyncExternalStore(
+    subscribeToConnection,
+    isConnectionSuitableForVideo,
+    isConnectionSuitableOnServer,
   );
 
   const shouldShowVideo =
-    hasVideoSource && isDeviceSuitable && !prefersReducedMotion;
+    hasVideoSource && isConnectionSuitable && !prefersReducedMotion;
 
   const togglePlayback = useCallback(() => {
     const video = videoRef.current;

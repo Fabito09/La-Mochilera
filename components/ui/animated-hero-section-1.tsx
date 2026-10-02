@@ -67,7 +67,7 @@ export function AnimatedHero({
   scrollTargetId,
   className,
 }: AnimatedHeroProps) {
-  const hasVideoSource = Boolean(backgroundVideoSrc?.mp4 || backgroundVideoSrc?.webm);
+  const hasVideoSource = Boolean(backgroundVideoSrc?.landscape || backgroundVideoSrc?.portrait);
   const { videoRef, shouldShowVideo, isPlaying, togglePlayback, playbackEvents } =
     useBackgroundVideo(hasVideoSource);
 

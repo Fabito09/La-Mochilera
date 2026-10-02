@@ -13,10 +13,13 @@ export interface HeroContent {
   description: string;
   /** Fotograma de portada: se ve en móvil y mientras carga el video. */
   posterImageUrl: string;
-  /** Video propio de la marca. Vacío = se muestra solo la foto de portada. */
+  /**
+   * Video propio de la marca, en MP4: uno horizontal (computadora) y uno
+   * vertical (celular). Vacío = se muestra solo la foto de portada.
+   */
   video: {
-    mp4: string;
-    webm: string;
+    landscape: string;
+    portrait: string;
   };
   primaryCta: { text: string; href: string };
   secondaryCta: { text: string; href: string };
@@ -26,9 +29,12 @@ export const heroContent: HeroContent = {
   title: "Hecho para durar. Hecho para el camino.",
   description:
     "Botas de cuero vacuno 100% natural, diseñadas para los que llevan la montaña en cada paso.",
-  posterImageUrl: "/brand/fotos/botas-duo-horizontal.webp",
-  // PROVISIONAL: al recibir el video, copiarlo a public/brand/video/ y poner las rutas acá.
-  video: { mp4: "", webm: "" },
+  posterImageUrl: "/brand/fotos/portada-poster.webp",
+  // "VIDEO WEB 1" (taller), recortado sin el logo impreso.
+  video: {
+    landscape: "/brand/video/portada-horizontal.mp4",
+    portrait: "/brand/video/portada-vertical.mp4",
+  },
   primaryCta: { text: "Ver la colección", href: "/tienda" },
   secondaryCta: { text: "Nuestra historia", href: "/nuestra-historia" },
 };
@@ -202,8 +208,9 @@ export type GalleryMedia =
 
 /**
  * Galería "En el camino": 4 espacios (grande, vertical, chico, chico).
- * PROVISIONAL: hoy usa fotos de estudio de la campaña. Reemplazar por fotos o
- * video del producto en uso al aire libre (bosque, sendero, fogata, ruta).
+ * El espacio vertical lleva el video "VIDEO WEB 2" (aire libre).
+ * PROVISIONAL: los otros tres usan fotos de estudio de la campaña. Reemplazar
+ * por fotos del producto en uso al aire libre (bosque, sendero, fogata, ruta).
  * Para poner un video: { kind: "video", src: "/brand/video/archivo.mp4", posterUrl: "...", alt: "..." }
  */
 export const lifestyleGallery: [GalleryMedia, GalleryMedia, GalleryMedia, GalleryMedia] = [
@@ -213,9 +220,10 @@ export const lifestyleGallery: [GalleryMedia, GalleryMedia, GalleryMedia, Galler
     alt: "Botín Summit de nubuck marrón visto de frente sobre una superficie de cuero",
   },
   {
-    kind: "image",
-    src: "/brand/fotos/botas-duo-vertical.webp",
-    alt: "Bota de nubuck camel y bota de cuero cognac sobre retazos de cuero",
+    kind: "video",
+    src: "/brand/video/historia-vertical.mp4",
+    posterUrl: "/brand/fotos/historia-poster.webp",
+    alt: "Persona atándose botas de cuero cognac sobre un cajón de madera en un jardín y saliendo a caminar",
   },
   {
     kind: "image",
@@ -236,17 +244,17 @@ export const brandStory = {
     "En La Mochilera creemos que una buena bota se reconoce con el tiempo: cuando el cuero toma la forma del pie y cada marca cuenta por dónde ha caminado.",
     "Por eso elegimos cueros naturales, costuras que aguantan y suelas pensadas para el terreno. Botas para quienes prefieren una sola pieza bien hecha a muchas de temporada.",
   ],
-  // PROVISIONAL: la primera foto va a ser el retrato del fundador.
-  images: [
-    {
-      src: "/brand/productos/cna01-cognac-espalda.webp",
-      alt: "Bota de cuero cognac vista desde el talón sobre una mesa de trabajo",
-    },
-    {
-      src: "/brand/fotos/botas-detalle-vertical.webp",
-      alt: "Punteras de botas de cuero en tonos camel, cognac y marrón",
-    },
-  ] satisfies [ImageAsset, ImageAsset],
+  // Video "VIDEO WEB 2" (aire libre), recortado sin el logo impreso.
+  primaryMedia: {
+    kind: "video",
+    src: "/brand/video/historia-vertical.mp4",
+    posterUrl: "/brand/fotos/historia-poster.webp",
+    alt: "Persona atándose botas de cuero cognac sobre un cajón de madera en un jardín y saliendo a caminar",
+  } satisfies GalleryMedia,
+  secondaryImage: {
+    src: "/brand/fotos/botas-detalle-vertical.webp",
+    alt: "Punteras de botas de cuero en tonos camel, cognac y marrón",
+  } satisfies ImageAsset,
 };
 
 /** Bloque de contacto al final del inicio. */

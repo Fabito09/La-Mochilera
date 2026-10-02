@@ -16,10 +16,10 @@ Lo que hoy es relleno provisional está marcado con el comentario
 | El precio de toda la campaña | `productos.ts` | `CAMPAIGN_PRICE` |
 | Mostrar un precio anterior tachado | `productos.ts` | Agregar `compareAtPriceInColones: 59_900` al producto |
 | El orden de "Más vendidos" | `productos.ts` | `bestSellerRank` (1 = el primero) |
-| El video o la foto del inicio | `inicio.ts` | `heroContent` (`video.mp4`, `posterImageUrl`) |
+| El video o la foto del inicio | `inicio.ts` | `heroContent`: `video.landscape` (computadora), `video.portrait` (celular), `posterImageUrl` |
 | Título y texto del inicio | `inicio.ts` | `heroContent.title` y `description` |
 | Fotos o video de la galería "En el camino" | `inicio.ts` | `lifestyleGallery` |
-| Historia de la marca y foto del fundador | `inicio.ts` | `brandStory` |
+| Historia del inicio: video y foto | `inicio.ts` | `brandStory` (`primaryMedia`, `secondaryImage`) |
 | Origen de cada material | `inicio.ts` | `ORIGIN_NOT_CONFIRMED` o el campo `origin` de cada uno |
 | Textos de pilares y materiales | `inicio.ts` | `brandPillars`, `materialComponents` |
 | WhatsApp, Instagram, showroom, envíos | `marca.ts` | `brandInfo` |
@@ -67,6 +67,9 @@ deben revisarlos un abogado antes de publicar.
 
 1. Copiar el archivo a `public/brand/` (fotos en `fotos/` o `productos/`,
    videos en `video/`). Preferir WebP para fotos y MP4 comprimido para video.
+   Los videos originales pesan cientos de MB: hay que comprimirlos (H.264, sin
+   audio, unos 5 MB) antes de usarlos. Para la portada, una versión horizontal
+   y una vertical, así cada pantalla descarga solo la suya.
 2. Poner la ruta en el archivo de contenido, empezando en `/brand/…`
    (sin `public`). Ejemplo: `"/brand/video/hero.mp4"`.
 3. Siempre completar el texto `alt`: describe la foto para quien no la ve y

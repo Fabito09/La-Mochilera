@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 
+/** Videos MP4 del hero, uno por orientación de pantalla. */
 export interface HeroVideoSources {
-  mp4?: string;
-  webm?: string;
+  /** Para pantallas horizontales (computadora, tablet acostada). */
+  landscape?: string;
+  /** Para pantallas verticales (celular). */
+  portrait?: string;
 }
 
 interface HeroBackgroundMediaProps {
@@ -18,9 +21,10 @@ interface HeroBackgroundMediaProps {
 }
 
 /**
- * Capa de fondo del hero: video en escritorio, imagen fija (póster) en móvil,
- * conexiones lentas o movimiento reducido, y un placeholder rotulado si
- * todavía no hay material. Incluye el degradado que asegura la legibilidad.
+ * Capa de fondo del hero: video si la conexión lo permite y no se pidió
+ * reducir el movimiento; si no, la imagen fija (póster). Cada pantalla recibe
+ * el video de su orientación y `object-cover` lo ajusta a cualquier tamaño sin
+ * deformarlo. Incluye el degradado que asegura la legibilidad del texto.
  */
 export function HeroBackgroundMedia({
   videoSources,
@@ -29,6 +33,9 @@ export function HeroBackgroundMedia({
   videoRef,
   playbackEvents,
 }: HeroBackgroundMediaProps) {
+  const landscapeSrc = videoSources?.landscape ?? videoSources?.portrait;
+  const hasBothOrientations = Boolean(videoSources?.landscape && videoSources?.portrait);
+
   return (
     <div className="absolute inset-0 z-0" aria-hidden="true">
       {shouldShowVideo ? (
@@ -43,8 +50,11 @@ export function HeroBackgroundMedia({
           className="h-full w-full object-cover"
           {...playbackEvents}
         >
-          {videoSources?.webm && <source src={videoSources.webm} type="video/webm" />}
-          {videoSources?.mp4 && <source src={videoSources.mp4} type="video/mp4" />}
+          {/* El navegador usa la primera fuente cuyo `media` coincide. */}
+          {hasBothOrientations && (
+            <source src={videoSources?.portrait} type="video/mp4" media="(orientation: portrait)" />
+          )}
+          {landscapeSrc && <source src={landscapeSrc} type="video/mp4" />}
         </video>
       ) : stillImageUrl ? (
         <Image
@@ -63,8 +73,6 @@ export function HeroBackgroundMedia({
         />
       )}
 
-      {/* Valores de opacidad provisionales: se ajustan con el material real
-          y se verifica el contraste del texto (WCAG AA). */}
       <div className="absolute inset-0 bg-linear-to-tr from-overlay/85 via-overlay/45 to-overlay/10" />
       <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-overlay/50 to-transparent" />
     </div>
