@@ -268,8 +268,6 @@ export const brandStory = {
  */
 export const homeContact = {
   title: "Contáctenos",
-  /** Sello circular, como en el catálogo. */
-  badge: "Para realizar su compra",
   // PROVISIONAL: foto de la misma sesión. Si el cliente envía el original del
   // fondo del catálogo, reemplazar src y alt.
   backgroundImage: {

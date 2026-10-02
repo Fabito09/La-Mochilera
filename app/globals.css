@@ -147,21 +147,3 @@
     aspect-ratio: 600 / 472;
   }
 }
-
-/*
- * Carrusel a sangre completa alineado con <Container>: el mismo margen como
- * padding y como scroll-padding, para que el snap no pegue la primera
- * tarjeta al borde.
- */
-@layer components {
-  .carousel-track {
-    --carousel-gutter: 1.5rem;
-    padding-inline: var(--carousel-gutter);
-    scroll-padding-inline: var(--carousel-gutter);
-    scrollbar-width: none;
-
-    @media (width >= 48rem) {
-      --carousel-gutter: max(3rem, calc((100vw - 80rem) / 2 + 3rem));
-    }
-  }
-}

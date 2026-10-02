@@ -31,13 +31,6 @@ export function ContactShowcase() {
 
       <Container className="flex justify-center">
         <div className="relative w-full max-w-md text-center">
-          <p
-            aria-hidden="true"
-            className="absolute -right-1 -top-6 flex h-20 w-20 rotate-12 items-center justify-center rounded-full bg-secondary p-2 text-[0.625rem] font-bold uppercase leading-tight tracking-wide text-secondary-foreground shadow-lg sm:-right-16 sm:h-24 sm:w-24 sm:text-xs"
-          >
-            {homeContact.badge}
-          </p>
-
           <span aria-hidden="true" className="logo-mask logo-isotipo mx-auto block h-12 md:h-14" />
           <h2 id="contacto-titulo" className="mt-6 font-display text-6xl leading-none md:text-7xl">
             {homeContact.title}
