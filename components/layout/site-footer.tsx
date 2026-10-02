@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/layout/brand-logo";
 import { Container } from "@/components/ui/container";
 import { InstagramIcon } from "@/components/ui/instagram-icon";
@@ -19,11 +22,31 @@ const footerLinkGroups = [
   { title: "La Mochilera", links: mainLinks },
 ];
 
+// En el inicio el pie es mínimo (logo y frase): el bloque "Contáctenos" que
+// está justo arriba ya muestra los datos de contacto.
+const ROUTES_WITH_COMPACT_FOOTER = ["/"];
+
+const FOOTER_TAGLINE = "Botas de cuero vacuno, diseñadas para los que llevan la montaña en cada paso.";
+
 const footerLinkClassName =
   "text-sm text-forest-foreground/80 transition-colors hover:text-forest-foreground";
 
 export function SiteFooter() {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+
+  if (ROUTES_WITH_COMPACT_FOOTER.includes(pathname)) {
+    return (
+      <footer className="border-t border-forest-foreground/15 bg-forest py-16 text-forest-foreground">
+        <Container className="flex flex-col items-center text-center">
+          <BrandLogo />
+          <p className="mt-6 max-w-xs text-sm leading-6 text-forest-foreground/80">
+            {FOOTER_TAGLINE}
+          </p>
+        </Container>
+      </footer>
+    );
+  }
 
   return (
     <footer className="border-t border-forest-foreground/15 bg-forest pb-10 pt-20 text-forest-foreground">
@@ -32,8 +55,7 @@ export function SiteFooter() {
           <div>
             <BrandLogo />
             <p className="mt-6 max-w-xs text-sm leading-6 text-forest-foreground/80">
-              Botas de cuero vacuno, diseñadas para los que llevan la montaña en
-              cada paso.
+              {FOOTER_TAGLINE}
             </p>
           </div>
 
