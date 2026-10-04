@@ -56,7 +56,6 @@ export default buildConfig({
     vercelBlobStorage({
       token: process.env.BLOB_READ_WRITE_TOKEN,
       collections: { media: { disablePayloadAccessControl: true } },
-      addRandomSuffix: true,
       alwaysInsertFields: true,
       // Las fotos del celular pueden pesar más de lo que acepta el servidor:
       // se suben directo desde el navegador a Vercel Blob.

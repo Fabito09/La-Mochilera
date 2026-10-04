@@ -1,7 +1,8 @@
 // CATÁLOGO — transcrito de "Campaña 1 | 2026".
 //
-// Para agregar, quitar o cambiar un producto se edita solo este archivo; las
-// páginas y tarjetas se actualizan solas.
+// RESPALDO: los productos ahora se manejan en el panel (/gestion-mochilera) y
+// el sitio los lee de la base de datos. Este archivo solo alimenta la carga
+// inicial (cms/seed.ts); cambiarlo ya no cambia el sitio.
 // Lo marcado con PROVISIONAL está pendiente de confirmar con el cliente
 // (ver docs/catalogo-campana-1.md).
 

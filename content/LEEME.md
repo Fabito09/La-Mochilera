@@ -7,18 +7,29 @@ leen de acá y se actualizan solas.
 Lo que hoy es relleno provisional está marcado con el comentario
 `PROVISIONAL`. Para encontrarlo todo, buscar esa palabra en la carpeta.
 
+## Productos, precios, tallas, inventario y pedidos
+
+Ya no están en esta carpeta: los manejan los dueños desde el **panel de
+administración**, en `/gestion-mochilera` (p. ej.
+`https://la-mochilera.vercel.app/gestion-mochilera`). Al guardar un cambio,
+el sitio se actualiza solo en unos segundos.
+
+- **Productos:** nombre, precio (vacío = "Consultar precio"), precio anterior
+  tachado, fotos (la primera es la principal), colores, materiales,
+  etiquetas, orden en "Más vendidos" y "Mostrar en la tienda".
+- **Tallas e inventario:** una fila por talla con sus unidades. 0 = agotada
+  (se ve tachada y no se puede elegir); vacío = no se lleva el control.
+- **Pedidos:** cliente, teléfono, dirección de envío, productos, estado y
+  número de guía. El total se calcula solo.
+- **Dueños:** solo ellos entran; un dueño agrega a los demás.
+
+`productos.ts` quedó solo como respaldo de la carga inicial
+(`cms/seed.ts`); cambiarlo ya no cambia el sitio.
+
 ## Qué archivo cambiar
 
 | Quiero cambiar… | Archivo | Qué editar |
 |-----------------|---------|------------|
-| Un producto: nombre, precio, fotos, tallas, insignias | `productos.ts` | El bloque del producto (se busca por su código, p. ej. `CME01`) |
-| Agregar un producto nuevo | `productos.ts` | Copiar un bloque completo, cambiar código, `slug` y datos |
-| El precio de toda la campaña | `productos.ts` | `CAMPAIGN_PRICE` |
-| Producto sin precio publicado | `productos.ts` | Quitar `priceInColones`: se muestra "Consultar precio" |
-| Colores para elegir al comprar (p. ej. gorros) | `productos.ts` | `colorOptions: ["Vino", "Arena", …]` |
-| Producto sin talla (gorros, accesorios) | `productos.ts` | `sizes: []`: no se muestra el selector |
-| Mostrar un precio anterior tachado | `productos.ts` | Agregar `compareAtPriceInColones: 59_900` al producto |
-| El orden de "Más vendidos" | `productos.ts` | `bestSellerRank` (1 = el primero) |
 | El video o la foto del inicio | `inicio.ts` | `heroContent`: `video.landscape` (computadora), `video.portrait` (celular), `posterImageUrl` |
 | Título y texto del inicio | `inicio.ts` | `heroContent.title` y `description` |
 | Fotos o video de la galería "En el camino" | `inicio.ts` | `lifestyleGallery` |

@@ -18,7 +18,9 @@ if (!process.env.BLOB_READ_WRITE_TOKEN) {
 
 const payload = await getPayload({ config });
 // Fuera del sitio no hay páginas que actualizar (ver cms/revalidate-site.ts).
-const context = { skipRevalidation: true };
+// Cada llamada recibe un objeto nuevo: Payload anota cosas en el contexto
+// (p. ej. que la foto ya se subió) y reusarlo saltaría las subidas siguientes.
+const freshContext = () => ({ skipRevalidation: true });
 
 // Varias botas comparten fotos de detalle: cada archivo se sube una sola vez.
 const uploadedMediaIds = new Map<string, number>();
@@ -31,7 +33,7 @@ async function uploadImage(src: string, alt: string): Promise<number> {
     collection: "media",
     data: { alt },
     filePath: path.resolve("public", `.${src}`),
-    context,
+    context: freshContext(),
   });
   uploadedMediaIds.set(src, media.id);
   return media.id;
@@ -76,7 +78,7 @@ for (const product of products) {
       releasedOn: product.releasedOn,
       isVisible: product.isAvailable,
     },
-    context,
+    context: freshContext(),
   });
   payload.logger.info(`${product.code} ${product.name}: listo (${imageIds.length} fotos).`);
 }
