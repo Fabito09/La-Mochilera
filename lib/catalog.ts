@@ -1,5 +1,5 @@
 // Tipos y funciones del catálogo. Los productos los cargan los dueños en el
-// panel de administración (/admin); lib/catalog-data.ts los lee de la base de
+// panel de administración (/gestion-mochilera); lib/catalog-data.ts los lee de la base de
 // datos. Estas funciones reciben la lista y no dependen de dónde vino.
 
 // Las listas de opciones las comparten el sitio y el panel de administración.

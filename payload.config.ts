@@ -1,4 +1,4 @@
-// Panel de administración (Payload) en /admin. Solo entran los dueños.
+// Panel de administración (Payload) en /gestion-mochilera. Solo entran los dueños.
 // Los datos viven en la base de datos Neon (Postgres) y las fotos en Vercel Blob.
 
 import path from "node:path";
@@ -14,12 +14,22 @@ import { Users } from "@/cms/collections/users";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/** Si se cambia, se renombra también la carpeta app/(payload)/gestion-mochilera. */
+const ADMIN_ROUTE = "/gestion-mochilera";
+
 export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: { baseDir: dirname },
-    meta: { titleSuffix: " · Panel La Mochilera" },
+    meta: {
+      titleSuffix: " · Panel La Mochilera",
+      // El panel no debe aparecer en Google ni en otros buscadores.
+      robots: { index: false, follow: false },
+    },
   },
+  // Dirección poco obvia a propósito: los robots que buscan paneles prueban
+  // /admin. La protección real es el inicio de sesión (ver cms/collections/users.ts).
+  routes: { admin: ADMIN_ROUTE },
   collections: [Products, Orders, Media, Users],
   i18n: {
     supportedLanguages: { es },

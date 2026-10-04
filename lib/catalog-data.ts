@@ -1,4 +1,5 @@
-// Lectura de productos desde la base de datos (los cargan los dueños en /admin).
+// Lectura de productos desde la base de datos (los cargan los dueños en el
+// panel, /gestion-mochilera).
 // Solo se usa en el servidor: las páginas la llaman y pasan los productos ya
 // convertidos al formato del sitio (`Product` de lib/catalog.ts).
 
