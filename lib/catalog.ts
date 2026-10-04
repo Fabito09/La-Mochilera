@@ -1,24 +1,28 @@
-// Tipos y funciones del catálogo. Los datos de cada producto viven en
-// content/productos.ts: para cambiar un producto se edita ese archivo.
+// Tipos y funciones del catálogo. Los productos los cargan los dueños en el
+// panel de administración (/admin); lib/catalog-data.ts los lee de la base de
+// datos. Estas funciones reciben la lista y no dependen de dónde vino.
 
-import { products } from "@/content/productos";
-
-export type ProductCategory = "botas" | "accesorios" | "gorros";
+// Las listas de opciones las comparten el sitio y el panel de administración.
+export const PRODUCT_CATEGORIES = ["botas", "accesorios", "gorros"] as const;
+export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
 
 /** Coincide con el último tramo de la URL: /tienda/botas/cana-media */
 export type ShaftHeight = "cana-baja" | "cana-media" | "cana-alta" | "urbanas";
 
-export type ColorFamily =
-  | "Marrón"
-  | "Miel y camel"
-  | "Negro"
-  | "Gris"
-  | "Vino"
-  | "Verde"
-  | "Mostaza"
-  | "Crema y arena";
+export const COLOR_FAMILIES = [
+  "Marrón",
+  "Miel y camel",
+  "Negro",
+  "Gris",
+  "Vino",
+  "Verde",
+  "Mostaza",
+  "Crema y arena",
+] as const;
+export type ColorFamily = (typeof COLOR_FAMILIES)[number];
 
-export type ProductBadge = "Precio especial" | "Nuevo" | "Preventa";
+export const PRODUCT_BADGES = ["Precio especial", "Nuevo", "Preventa"] as const;
+export type ProductBadge = (typeof PRODUCT_BADGES)[number];
 
 export interface ProductImage {
   src: string;
@@ -51,8 +55,10 @@ export interface Product {
   badges: ProductBadge[];
   /** La primera es la foto principal. */
   images: ProductImage[];
-  /** Tallas EU disponibles. Vacío = producto sin talla (no muestra selector). */
+  /** Tallas EU del modelo. Vacío = producto sin talla (no muestra selector). */
   sizes: number[];
+  /** Tallas con inventario en 0: se muestran pero no se pueden elegir. */
+  soldOutSizes: number[];
   /** Orden en "Más vendidos" (1 = el más vendido). */
   bestSellerRank: number;
   /** Fecha de lanzamiento (AAAA-MM-DD), para ordenar por novedades. */
@@ -85,13 +91,7 @@ export function productEyebrow(product: Product): string {
     : categoryLabels[product.category];
 }
 
-export function findProductByCode(code: string): Product {
-  const product = products.find((candidate) => candidate.code === code);
-  if (!product) throw new Error(`Producto ${code} no existe en el catálogo`);
-  return product;
-}
-
-export function findProductBySlug(slug: string): Product | undefined {
+export function findProductBySlug(products: Product[], slug: string): Product | undefined {
   return products.find((candidate) => candidate.slug === slug);
 }
 
@@ -99,12 +99,17 @@ export function productHref(product: Product): string {
   return `/producto/${product.slug}`;
 }
 
-export function productsInCategory(category: ProductCategory): Product[] {
+/** Tallas que se pueden pedir hoy (las del modelo menos las agotadas). */
+export function sizesInStock(product: Product): number[] {
+  return product.sizes.filter((size) => !product.soldOutSizes.includes(size));
+}
+
+export function productsInCategory(products: Product[], category: ProductCategory): Product[] {
   return products.filter((product) => product.category === category);
 }
 
 /** Productos parecidos: primero la misma categoría y altura de caña, luego el resto. */
-export function relatedProducts(product: Product, limit: number): Product[] {
+export function relatedProducts(products: Product[], product: Product, limit: number): Product[] {
   const similarity = (candidate: Product) =>
     (candidate.category === product.category ? 2 : 0) +
     (candidate.shaftHeight && candidate.shaftHeight === product.shaftHeight ? 1 : 0);
@@ -115,7 +120,7 @@ export function relatedProducts(product: Product, limit: number): Product[] {
 }
 
 /** Mismo modelo en otros colores (productos con el mismo nombre). */
-export function colorVariantsOf(product: Product): Product[] {
+export function colorVariantsOf(products: Product[], product: Product): Product[] {
   return products.filter(
     (candidate) => candidate.name === product.name && candidate.code !== product.code,
   );
@@ -126,7 +131,7 @@ function normalizeForSearch(text: string): string {
 }
 
 /** Busca por nombre, color, cuero, tipo o código; cada palabra debe coincidir. */
-export function searchProducts(query: string): Product[] {
+export function searchProducts(products: Product[], query: string): Product[] {
   const words = normalizeForSearch(query).split(/\s+/).filter(Boolean);
   if (words.length === 0) return [];
 

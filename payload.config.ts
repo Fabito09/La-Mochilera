@@ -1,0 +1,49 @@
+// Panel de administración (Payload) en /admin. Solo entran los dueños.
+// Los datos viven en la base de datos Neon (Postgres) y las fotos en Vercel Blob.
+
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { postgresAdapter } from "@payloadcms/db-postgres";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import { es } from "@payloadcms/translations/languages/es";
+import { buildConfig } from "payload";
+import { Media } from "@/cms/collections/media";
+import { Orders } from "@/cms/collections/orders";
+import { Products } from "@/cms/collections/products";
+import { Users } from "@/cms/collections/users";
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default buildConfig({
+  admin: {
+    user: Users.slug,
+    importMap: { baseDir: dirname },
+    meta: { titleSuffix: " · Panel La Mochilera" },
+  },
+  collections: [Products, Orders, Media, Users],
+  i18n: {
+    supportedLanguages: { es },
+    fallbackLanguage: "es",
+  },
+  secret: process.env.PAYLOAD_SECRET ?? "",
+  db: postgresAdapter({
+    pool: { connectionString: process.env.DATABASE_URL },
+    // Los cambios de estructura se aplican con migraciones (cms/migrations),
+    // nunca automáticamente: la base de datos tiene datos reales del negocio.
+    push: false,
+    migrationDir: path.resolve(dirname, "cms/migrations"),
+  }),
+  plugins: [
+    vercelBlobStorage({
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      collections: { media: { disablePayloadAccessControl: true } },
+      addRandomSuffix: true,
+      alwaysInsertFields: true,
+      // Las fotos del celular pueden pesar más de lo que acepta el servidor:
+      // se suben directo desde el navegador a Vercel Blob.
+      clientUploads: true,
+    }),
+  ],
+  graphQL: { disable: true },
+  typescript: { outputFile: path.resolve(dirname, "cms/payload-types.ts") },
+});

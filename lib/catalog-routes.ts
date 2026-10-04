@@ -5,13 +5,13 @@
 import { catalogTexts } from "@/content/tienda";
 import { shopCategories, shopLink, type NavLink } from "@/content/navegacion";
 import {
+  PRODUCT_CATEGORIES,
   isShaftHeight,
   productsInCategory,
   type Product,
   type ProductCategory,
   type ShaftHeight,
 } from "@/lib/catalog";
-import { products } from "@/content/productos";
 
 export interface CatalogPage {
   title: string;
@@ -21,8 +21,6 @@ export interface CatalogPage {
   presetShaftHeight?: ShaftHeight;
   breadcrumbs: NavLink[];
 }
-
-const PRODUCT_CATEGORIES: ProductCategory[] = ["botas", "accesorios", "gorros"];
 
 function lastSegment(href: string): string {
   return href.split("/").at(-1) ?? "";
@@ -36,7 +34,7 @@ function isShopHref(href: string): boolean {
   return href.startsWith(`${shopLink.href}/`);
 }
 
-export function resolveCatalogPage(segments: string[] = []): CatalogPage | null {
+export function resolveCatalogPage(products: Product[], segments: string[] = []): CatalogPage | null {
   const [categorySlug, subcategorySlug, ...extraSegments] = segments;
   const shopBreadcrumb: NavLink = { label: shopLink.label, href: shopLink.href };
 
@@ -52,7 +50,7 @@ export function resolveCatalogPage(segments: string[] = []): CatalogPage | null 
   const category = shopCategories.find((candidate) => lastSegment(candidate.href) === categorySlug);
   if (!category || !isProductCategory(categorySlug) || extraSegments.length > 0) return null;
 
-  const categoryProducts = productsInCategory(categorySlug);
+  const categoryProducts = productsInCategory(products, categorySlug);
   const categoryBreadcrumbs = [shopBreadcrumb, { label: category.label, href: category.href }];
   const description = categoryProducts.length > 0
     ? (category.description ?? "")

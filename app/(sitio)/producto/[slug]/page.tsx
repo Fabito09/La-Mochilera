@@ -13,8 +13,8 @@ import { ProductReviews } from "@/components/product/product-reviews";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { products } from "@/content/productos";
 import { shopCategories, shopLink } from "@/content/navegacion";
+import { getProducts } from "@/lib/catalog-data";
 import {
   colorVariantsOf,
   findProductBySlug,
@@ -48,15 +48,16 @@ function metaDescription(product: Product): string {
 
 const RELATED_PRODUCTS_LIMIT = 4;
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
+// Se generan por adelantado los productos que ya existen; uno nuevo cargado
+// en el panel se genera la primera vez que alguien lo visita.
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/producto/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const product = findProductBySlug(slug);
+  const product = findProductBySlug(await getProducts(), slug);
   if (!product) return {};
   const [mainImage] = product.images;
   return {
@@ -68,10 +69,11 @@ export async function generateMetadata({ params }: PageProps<"/producto/[slug]">
 
 export default async function ProductPage({ params }: PageProps<"/producto/[slug]">) {
   const { slug } = await params;
-  const product = findProductBySlug(slug);
+  const products = await getProducts();
+  const product = findProductBySlug(products, slug);
   if (!product) notFound();
 
-  const colorVariants = colorVariantsOf(product);
+  const colorVariants = colorVariantsOf(products, product);
   const eyebrow = productEyebrow(product);
 
   return (
@@ -146,7 +148,7 @@ export default async function ProductPage({ params }: PageProps<"/producto/[slug
         <Container>
           <SectionHeading id="relacionados-titulo" eyebrow="También le puede gustar" title="Otros modelos" />
           <ul className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            {relatedProducts(product, RELATED_PRODUCTS_LIMIT).map((related) => (
+            {relatedProducts(products, product, RELATED_PRODUCTS_LIMIT).map((related) => (
               <li key={related.code}>
                 <ProductCard product={related} />
               </li>

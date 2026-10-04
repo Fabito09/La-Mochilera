@@ -2,7 +2,7 @@ import { NoticePage } from "@/components/page/notice-page";
 import { shopLink } from "@/content/navegacion";
 import { notFoundPage } from "@/content/paginas/utilitarias";
 
-export default function NotFound() {
+export function NotFoundNotice() {
   return (
     <NoticePage
       eyebrow={notFoundPage.eyebrow}

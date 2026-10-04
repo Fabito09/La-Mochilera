@@ -5,15 +5,15 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 import { ProductCard } from "@/components/product/product-card";
 import { searchPage } from "@/content/paginas/utilitarias";
-import { searchProducts } from "@/lib/catalog";
+import { searchProducts, type Product } from "@/lib/catalog";
 
 // La búsqueda queda en la URL (?q=…) para poder compartirla o volver atrás.
-export function ProductSearch() {
+export function ProductSearch({ products }: { products: Product[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
-  const results = searchProducts(query);
+  const results = searchProducts(products, query);
   const hasQuery = query.trim().length > 0;
 
   const updateQuery = (nextQuery: string) => {

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { catalogTexts } from "@/content/tienda";
 import { shopLink } from "@/content/navegacion";
+import { getProducts } from "@/lib/catalog-data";
 import { catalogStaticParams, resolveCatalogPage } from "@/lib/catalog-routes";
 
 // Solo existen las URLs que salen del menú de la tienda; el resto da 404.
@@ -21,14 +22,14 @@ export async function generateMetadata({
   params,
 }: PageProps<"/tienda/[[...segmentos]]">): Promise<Metadata> {
   const { segmentos } = await params;
-  const catalogPage = resolveCatalogPage(segmentos);
+  const catalogPage = resolveCatalogPage(await getProducts(), segmentos);
   if (!catalogPage) return {};
   return { title: catalogPage.title, description: catalogPage.description };
 }
 
 export default async function CatalogPage({ params }: PageProps<"/tienda/[[...segmentos]]">) {
   const { segmentos } = await params;
-  const catalogPage = resolveCatalogPage(segmentos);
+  const catalogPage = resolveCatalogPage(await getProducts(), segmentos);
   if (!catalogPage) notFound();
 
   const hasProducts = catalogPage.products.length > 0;

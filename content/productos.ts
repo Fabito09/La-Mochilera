@@ -20,7 +20,8 @@ const COW_LEATHER = "Cuero vacuno";
 const SMOOTH_COW_LEATHER = "Cuero vacuno liso";
 const CAMPAIGN_RELEASE = "2026-01-15"; // PROVISIONAL: fecha de lanzamiento de la campaña
 
-export const products: Product[] = [
+// El inventario no existía en este archivo: lo cargan los dueños en el panel.
+export const products: Omit<Product, "soldOutSizes">[] = [
   {
     code: "CME01",
     slug: "botin-summit-cme01",

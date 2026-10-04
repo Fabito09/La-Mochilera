@@ -63,6 +63,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
           legend="Talla (EU)"
           name="talla"
           options={product.sizes.map(String)}
+          unavailableOptions={product.soldOutSizes.map(String)}
           selected={selection.size}
           onSelect={(size) => setSelection((current) => ({ ...current, size }))}
           aside={<SizeGuideDialog />}

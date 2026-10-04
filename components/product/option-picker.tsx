@@ -6,6 +6,8 @@ interface OptionPickerProps {
   /** Prefijo único para los ids y el name de los botones. */
   name: string;
   options: string[];
+  /** Opciones agotadas: se muestran tachadas y no se pueden elegir. */
+  unavailableOptions?: string[];
   selected: string | null;
   onSelect: (option: string) => void;
   /** Contenido a la derecha del título, p. ej. el enlace a la guía de tallas. */
@@ -19,6 +21,7 @@ export function OptionPicker({
   legend,
   name,
   options,
+  unavailableOptions = [],
   selected,
   onSelect,
   aside,
@@ -38,6 +41,7 @@ export function OptionPicker({
         {options.map((option, index) => {
           const inputId = `${name}-${index}`;
           const isSelected = selected === option;
+          const isUnavailable = unavailableOptions.includes(option);
           return (
             <div key={option}>
               <input
@@ -46,6 +50,7 @@ export function OptionPicker({
                 name={name}
                 value={option}
                 checked={isSelected}
+                disabled={isUnavailable}
                 onChange={() => onSelect(option)}
                 className="peer sr-only"
               />
@@ -55,10 +60,13 @@ export function OptionPicker({
                   "flex h-11 cursor-pointer items-center justify-center rounded-sm border px-2 text-center text-sm transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2",
                   isSelected
                     ? "border-primary bg-primary text-primary-foreground"
-                    : "border-input hover:bg-accent",
+                    : isUnavailable
+                      ? "cursor-not-allowed border-dashed border-input text-muted-foreground line-through"
+                      : "border-input hover:bg-accent",
                 )}
               >
                 {option}
+                {isUnavailable && <span className="sr-only"> (agotada)</span>}
               </label>
             </div>
           );

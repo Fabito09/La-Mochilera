@@ -1,12 +1,10 @@
-import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Instrument_Serif, Roboto } from "next/font/google";
 import { MotionProvider } from "@/components/layout/motion-provider";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { StoreJsonLd } from "@/components/layout/store-json-ld";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
-import { siteUrl } from "@/content/marca";
-import "./globals.css";
 
 // Guía de Marca: Roboto para cuerpos de texto, VINCENTE para titulares.
 // VINCENTE no es una fuente web gratuita: hasta recibir los archivos con
@@ -23,32 +21,12 @@ const bodyFont = Roboto({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "La Mochilera · Casa de Cuero — Botas de cuero vacuno",
-    template: "%s | La Mochilera · Casa de Cuero",
-  },
-  description:
-    "Botas de cuero vacuno, diseñadas para los que llevan la montaña en cada paso. Showroom en San Pedro y envíos a toda Costa Rica.",
-  // Vista previa al compartir el enlace en WhatsApp, Instagram o Facebook.
-  openGraph: {
-    type: "website",
-    locale: "es_CR",
-    siteName: "La Mochilera · Casa de Cuero",
-    images: [
-      {
-        url: "/brand/fotos/botas-duo-horizontal.webp",
-        width: 2400,
-        height: 1920,
-        alt: "Botas de cuero de La Mochilera sobre retazos de cuero",
-      },
-    ],
-  },
-  twitter: { card: "summary_large_image" },
-};
-
-export default function RootLayout({ children }: LayoutProps<"/">) {
+/**
+ * Documento HTML del sitio público: fuentes, encabezado, pie y botón de
+ * WhatsApp. Lo comparten el layout del sitio y la página 404 global (el panel
+ * de administración tiene su propio documento).
+ */
+export function SiteDocument({ children }: { children: ReactNode }) {
   return (
     <html
       lang="es"

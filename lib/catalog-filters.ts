@@ -1,6 +1,6 @@
 // Filtros y orden del catálogo, como funciones puras (sin estado ni vista).
 
-import { shaftHeightLabels, type ColorFamily, type Product, type ShaftHeight } from "@/lib/catalog";
+import { shaftHeightLabels, sizesInStock, type ColorFamily, type Product, type ShaftHeight } from "@/lib/catalog";
 import { formatPriceInColones } from "@/lib/format-price";
 
 export type SortOption = "novedades" | "mas-vendidos" | "precio-asc" | "precio-desc";
@@ -84,7 +84,7 @@ export function filterProducts(products: Product[], filters: CatalogFilters): Pr
     if (shaftHeights.length > 0 && !(product.shaftHeight && shaftHeights.includes(product.shaftHeight))) return false;
     if (leatherTypes.length > 0 && !(product.leatherType && leatherTypes.includes(product.leatherType))) return false;
     if (colorFamilies.length > 0 && !product.colorFamilies.some((family) => colorFamilies.includes(family))) return false;
-    if (sizes.length > 0 && !sizes.some((size) => product.sizes.includes(size))) return false;
+    if (sizes.length > 0 && !sizes.some((size) => sizesInStock(product).includes(size))) return false;
     if (priceRangeIds.length > 0 && !matchesPriceRanges(product, priceRangeIds)) return false;
     return true;
   });
@@ -122,6 +122,6 @@ export function collectFilterOptions(products: Product[]): FilterOptions {
     ),
     leatherTypes: unique(products.flatMap((product) => product.leatherType ?? [])).sort(),
     colorFamilies: unique(products.flatMap((product) => product.colorFamilies)).sort(),
-    sizes: unique(products.flatMap((product) => product.sizes)).sort((a, b) => a - b),
+    sizes: unique(products.flatMap(sizesInStock)).sort((a, b) => a - b),
   };
 }

@@ -1,3 +1,4 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -7,7 +8,14 @@ const nextConfig: NextConfig = {
   images: {
     // AVIF pesa ~20% menos que WebP; los navegadores que no lo soportan reciben WebP.
     formats: ["image/avif", "image/webp"],
+    // Fotos subidas desde el panel (Vercel Blob).
+    remotePatterns: [{ protocol: "https", hostname: "*.public.blob.vercel-storage.com" }],
+  },
+  experimental: {
+    // El sitio y el panel tienen layouts raíz distintos: la 404 de direcciones
+    // inexistentes vive en app/global-not-found.tsx.
+    globalNotFound: true,
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig, { devBundleServerPackages: false });

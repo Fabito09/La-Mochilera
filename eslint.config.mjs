@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Archivos que genera Payload (panel de administración).
+    "cms/migrations/**",
+    "cms/payload-types.ts",
+    "app/(payload)/**",
   ]),
 ]);
 
