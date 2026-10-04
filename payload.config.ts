@@ -24,6 +24,9 @@ export default buildConfig({
     // Siempre claro: crema y café, como el sitio (ver app/(payload)/custom.scss).
     theme: "light",
     components: {
+      // Barra de secciones arriba, en lugar del menú lateral desplegable.
+      header: ["/cms/components/admin-top-nav#AdminTopNav"],
+      Nav: "/cms/components/admin-top-nav#HiddenSideNav",
       graphics: {
         Logo: "/cms/components/admin-graphics#AdminLogo",
         Icon: "/cms/components/admin-graphics#AdminIcon",

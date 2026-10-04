@@ -37,6 +37,10 @@ export const Products: CollectionConfig = {
     useAsTitle: "name",
     defaultColumns: ["name", "code", "category", "priceInColones", "isVisible"],
     listSearchableFields: ["name", "code", "colorName"],
+    // Pestañas Todos / Botas / Accesorios / Gorros sobre la lista.
+    components: {
+      beforeListTable: ["/cms/components/product-category-tabs#ProductCategoryTabs"],
+    },
   },
   access: {
     read: visibleOrOwner,
