@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, ShoppingBag, User } from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 import { accountLinks } from "@/content/navegacion";
 import { cn } from "@/lib/utils";
 
@@ -25,13 +25,6 @@ export function HeaderActions({ cartItemCount, className }: HeaderActionsProps) 
         className={iconLinkClassName}
       >
         <Search className="h-5 w-5" aria-hidden="true" />
-      </Link>
-      <Link
-        href={accountLinks.account.href}
-        aria-label={accountLinks.account.label}
-        className={cn(iconLinkClassName, "hidden lg:inline-flex")}
-      >
-        <User className="h-5 w-5" aria-hidden="true" />
       </Link>
       <Link
         href={accountLinks.cart.href}

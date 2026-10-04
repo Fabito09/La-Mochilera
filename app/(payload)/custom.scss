@@ -1,1 +1,100 @@
-/* Ajustes visuales del panel de administración. */
+/*
+ * Panel de administración con la paleta de la Guía de Marca (los mismos
+ * colores que app/globals.css usa en el sitio).
+ */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Roboto:wght@400;500;700&display=swap");
+
+@layer payload {
+  :root {
+    --marca-crema: #f6f3e4;
+    --marca-beige: #e6dec8;
+    --marca-cafe-oscuro: #3c240f;
+    --marca-bosque: #2a321b;
+    --marca-oliva: #565113;
+    --marca-oliva-dorado: #847c1f;
+
+    --font-body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-serif: "Instrument Serif", Georgia, serif;
+
+    /*
+     * Payload pinta todo con una escala de 21 tonos que va del fondo (0) al
+     * texto (1000). Aquí la escala va del crema al café oscuro de la marca.
+     */
+    --theme-elevation-0: var(--marca-crema);
+    --theme-elevation-50: color-mix(in srgb, var(--marca-cafe-oscuro) 5%, var(--marca-crema));
+    --theme-elevation-100: var(--marca-beige);
+    --theme-elevation-150: color-mix(in srgb, var(--marca-cafe-oscuro) 15%, var(--marca-crema));
+    --theme-elevation-200: color-mix(in srgb, var(--marca-cafe-oscuro) 20%, var(--marca-crema));
+    --theme-elevation-250: color-mix(in srgb, var(--marca-cafe-oscuro) 25%, var(--marca-crema));
+    --theme-elevation-300: color-mix(in srgb, var(--marca-cafe-oscuro) 30%, var(--marca-crema));
+    --theme-elevation-350: color-mix(in srgb, var(--marca-cafe-oscuro) 35%, var(--marca-crema));
+    --theme-elevation-400: color-mix(in srgb, var(--marca-cafe-oscuro) 40%, var(--marca-crema));
+    --theme-elevation-450: color-mix(in srgb, var(--marca-cafe-oscuro) 45%, var(--marca-crema));
+    --theme-elevation-500: color-mix(in srgb, var(--marca-cafe-oscuro) 55%, var(--marca-crema));
+    --theme-elevation-550: color-mix(in srgb, var(--marca-cafe-oscuro) 60%, var(--marca-crema));
+    --theme-elevation-600: color-mix(in srgb, var(--marca-cafe-oscuro) 65%, var(--marca-crema));
+    --theme-elevation-650: color-mix(in srgb, var(--marca-cafe-oscuro) 70%, var(--marca-crema));
+    --theme-elevation-700: color-mix(in srgb, var(--marca-cafe-oscuro) 75%, var(--marca-crema));
+    --theme-elevation-750: color-mix(in srgb, var(--marca-cafe-oscuro) 82%, var(--marca-crema));
+    --theme-elevation-800: color-mix(in srgb, var(--marca-cafe-oscuro) 88%, var(--marca-crema));
+    --theme-elevation-850: color-mix(in srgb, var(--marca-cafe-oscuro) 92%, var(--marca-crema));
+    --theme-elevation-900: var(--marca-cafe-oscuro);
+    --theme-elevation-950: var(--marca-cafe-oscuro);
+    --theme-elevation-1000: var(--marca-cafe-oscuro);
+
+    --theme-bg: var(--marca-crema);
+    --theme-input-bg: #ffffff;
+    --theme-text: var(--marca-cafe-oscuro);
+  }
+
+  /* Botón principal (Guardar, Crear, Entrar) en verde bosque, como en el sitio. */
+  .btn--style-primary {
+    --bg-color: var(--marca-bosque);
+    --color: var(--marca-crema);
+    --hover-bg: var(--marca-oliva);
+  }
+
+  /* Títulos con la tipografía de titulares de la marca. */
+  h1,
+  .render-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  /* Barra lateral del panel en verde bosque. */
+  .nav {
+    --theme-elevation-0: var(--marca-bosque);
+    --theme-elevation-50: color-mix(in srgb, var(--marca-crema) 8%, var(--marca-bosque));
+    --theme-elevation-100: color-mix(in srgb, var(--marca-crema) 14%, var(--marca-bosque));
+    --theme-elevation-150: color-mix(in srgb, var(--marca-crema) 20%, var(--marca-bosque));
+    --theme-elevation-400: color-mix(in srgb, var(--marca-crema) 60%, var(--marca-bosque));
+    --theme-elevation-800: var(--marca-crema);
+    --theme-elevation-1000: var(--marca-crema);
+    --theme-text: var(--marca-crema);
+    background: var(--marca-bosque);
+    color: var(--marca-crema);
+  }
+
+  .admin-logo,
+  .admin-icon {
+    display: block;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .admin-logo {
+    width: min(18rem, 80vw);
+    aspect-ratio: 1200 / 262;
+    mask-image: url("/brand/logo/logo-horizontal.png");
+    color: var(--marca-cafe-oscuro);
+  }
+
+  .admin-icon {
+    width: 2rem;
+    aspect-ratio: 600 / 472;
+    mask-image: url("/brand/logo/isotipo.png");
+  }
+}

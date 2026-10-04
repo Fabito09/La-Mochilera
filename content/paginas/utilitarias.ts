@@ -12,14 +12,6 @@ export const cartPage = {
   metaDescription: "Carrito de compras de La Mochilera · Casa de Cuero.",
 };
 
-export const accountPage = {
-  eyebrow: "Mi cuenta",
-  title: "Cuentas de cliente, muy pronto",
-  intro:
-    "Estamos preparando la tienda en línea. Cuando esté lista podrá crear su cuenta, ver sus pedidos y guardar sus datos de envío.",
-  metaDescription: "Cuenta de cliente de La Mochilera · Casa de Cuero.",
-};
-
 export const searchPage = {
   eyebrow: "Buscar",
   title: "Buscar en la tienda",

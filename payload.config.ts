@@ -21,8 +21,17 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: { baseDir: dirname },
+    // Siempre claro: crema y café, como el sitio (ver app/(payload)/custom.scss).
+    theme: "light",
+    components: {
+      graphics: {
+        Logo: "/cms/components/admin-graphics#AdminLogo",
+        Icon: "/cms/components/admin-graphics#AdminIcon",
+      },
+    },
     meta: {
       titleSuffix: " · Panel La Mochilera",
+      icons: [{ rel: "icon", url: "/icon.png" }],
       // El panel no debe aparecer en Google ni en otros buscadores.
       robots: { index: false, follow: false },
     },

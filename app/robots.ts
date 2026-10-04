@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       // Páginas sin contenido propio para buscadores.
-      disallow: ["/buscar", "/carrito", "/cuenta"],
+      disallow: ["/buscar", "/carrito"],
     },
     sitemap: absoluteUrl("/sitemap.xml"),
   };
