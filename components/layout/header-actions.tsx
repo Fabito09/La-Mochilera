@@ -9,7 +9,7 @@ interface HeaderActionsProps {
 }
 
 const iconLinkClassName =
-  "relative inline-flex h-10 w-10 items-center justify-center rounded-md transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current";
+  "relative inline-flex h-10 w-9 items-center justify-center rounded-md transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current";
 
 export function HeaderActions({ cartItemCount, className }: HeaderActionsProps) {
   const cartLabel =
@@ -29,7 +29,7 @@ export function HeaderActions({ cartItemCount, className }: HeaderActionsProps) 
       <Link
         href={accountLinks.account.href}
         aria-label={accountLinks.account.label}
-        className={cn(iconLinkClassName, "hidden lg:inline-flex")}
+        className={iconLinkClassName}
       >
         <User className="h-5 w-5" aria-hidden="true" />
       </Link>

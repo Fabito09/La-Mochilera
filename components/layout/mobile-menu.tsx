@@ -80,18 +80,11 @@ export function MobileMenu() {
             </ul>
           </nav>
 
-          <div className="grid grid-cols-2 gap-3 border-t px-6 py-6 text-sm font-medium">
-            <Link
-              href={accountLinks.account.href}
-              onClick={closeMenu}
-              className="rounded-md border py-3 text-center"
-            >
-              {accountLinks.account.label}
-            </Link>
+          <div className="border-t px-6 py-6 text-sm font-medium">
             <Link
               href={accountLinks.cart.href}
               onClick={closeMenu}
-              className="rounded-md bg-primary py-3 text-center text-primary-foreground"
+              className="block rounded-md bg-primary py-3 text-center text-primary-foreground"
             >
               {accountLinks.cart.label}
             </Link>
