@@ -50,7 +50,7 @@ el sitio se actualiza solo en unos segundos.
 | Preguntas frecuentes | `paginas/ayuda.ts` | `faqItems` |
 | Textos de contacto y guía de tallas | `paginas/ayuda.ts` | `contactPage`, `sizeGuidePage` |
 | Dirección y mapa del showroom | `marca.ts` | `brandInfo.showroom.address` y `mapUrl` |
-| Carrito, búsqueda y página 404 | `paginas/utilitarias.ts` | El bloque de cada página |
+| Carrito, cuenta, búsqueda y página 404 | `paginas/utilitarias.ts` | El bloque de cada página |
 
 ## Tono de los textos
 

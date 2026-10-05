@@ -12,6 +12,16 @@ export const cartPage = {
   metaDescription: "Carrito de compras de La Mochilera · Casa de Cuero.",
 };
 
+// PROVISIONAL: las cuentas de cliente se activan junto con la pasarela de
+// pago; desde entonces serán obligatorias para comprar en línea.
+export const accountPage = {
+  eyebrow: "Mi cuenta",
+  title: "Cuentas de cliente, muy pronto",
+  intro:
+    "Estamos preparando la tienda en línea. Muy pronto podrá crear su cuenta para comprar desde el sitio, guardar sus datos de envío y ver sus pedidos.",
+  metaDescription: "Cuenta de cliente de La Mochilera · Casa de Cuero.",
+};
+
 export const searchPage = {
   eyebrow: "Buscar",
   title: "Buscar en la tienda",
