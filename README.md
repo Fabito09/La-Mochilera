@@ -31,6 +31,7 @@ Next.js lo exige.
 | `BACKEND/payload.config.ts` | Configuración del panel: base de datos Neon, fotos en Vercel Blob, ruta `/gestion-mochilera` |
 | `BACKEND/collections/` | Qué guarda el panel: productos (con inventario por talla), pedidos, clientes (cuentas del sitio), fotos y dueños |
 | `BACKEND/access.ts` | Permisos: dueños (panel) y clientes (solo su cuenta y sus pedidos) |
+| `BACKEND/panel-access.ts` + `proxy.ts` | Panel escondido: sin el enlace secreto (`npm run enlace-panel`) responde 404 |
 | `BACKEND/components/` | Piezas del panel: barra de secciones, pestañas por categoría, logo |
 | `BACKEND/migrations/` | Cambios de estructura de la base de datos (`npm run migrate`) |
 | `BACKEND/catalog-data.ts` | Cómo el sitio lee los productos de la base de datos |

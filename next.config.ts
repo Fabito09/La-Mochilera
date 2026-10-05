@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   // Solo en desarrollo: permite abrir `npm run dev` desde el celular en la
   // misma red Wi-Fi (http://192.168.x.x:3000). No afecta al sitio publicado.
   allowedDevOrigins: ["192.168.*.*"],
+  // Sin la cabecera "X-Powered-By: Next.js, Payload": no anunciar qué sistema
+  // hay detrás ayuda a que nadie busque el panel.
+  poweredByHeader: false,
   images: {
     // AVIF pesa ~20% menos que WebP; los navegadores que no lo soportan reciben WebP.
     formats: ["image/avif", "image/webp"],

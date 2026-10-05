@@ -10,7 +10,8 @@
     "payload": "payload",
     "migrate": "payload migrate",
     "generate:types": "payload generate:types",
-    "generate:importmap": "payload generate:importmap"
+    "generate:importmap": "payload generate:importmap",
+    "enlace-panel": "payload run BACKEND/panel-link.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.90.2",

@@ -12,12 +12,11 @@ import { Media } from "@/backend/collections/media";
 import { Orders } from "@/backend/collections/orders";
 import { Products } from "@/backend/collections/products";
 import { Users } from "@/backend/collections/users";
+import { ADMIN_ROUTE } from "@/backend/panel-access";
 import { siteUrl } from "@/content/marca";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
-/** Si se cambia, se renombra también la carpeta app/(payload)/gestion-mochilera. */
-const ADMIN_ROUTE = "/gestion-mochilera";
 
 /**
  * Direcciones desde donde se aceptan sesiones (dueños y clientes). Una página

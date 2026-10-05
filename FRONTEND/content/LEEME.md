@@ -10,9 +10,14 @@ Lo que hoy es relleno provisional está marcado con el comentario
 ## Productos, precios, tallas, inventario y pedidos
 
 Ya no están en esta carpeta: los manejan los dueños desde el **panel de
-administración**, en `/gestion-mochilera` (p. ej.
-`https://la-mochilera.vercel.app/gestion-mochilera`). Al guardar un cambio,
-el sitio se actualiza solo en unos segundos.
+administración**. Al guardar un cambio, el sitio se actualiza solo en unos
+segundos.
+
+El panel está escondido: solo se abre con el **enlace secreto**, que se
+obtiene con `npm run enlace-panel` y se manda por aparte a cada dueño. Sin
+ese enlace, `/gestion-mochilera` responde "página no encontrada". El
+navegador que usó el enlace lo recuerda un año; si borran los datos del
+navegador, hay que volver a abrir el enlace.
 
 - **Productos:** nombre, precio (vacío = "Consultar precio"), precio anterior
   tachado, fotos (la primera es la principal), colores, materiales,
