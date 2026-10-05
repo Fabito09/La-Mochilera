@@ -1,5 +1,5 @@
 import type { Access, CollectionConfig, FieldHook } from "payload";
-import { isOwner } from "@/backend/access";
+import { isOwner, isOwnerRequest } from "@/backend/access";
 import { revalidateAfterChange, revalidateAfterDelete } from "@/backend/revalidate-site";
 import {
   COLOR_FAMILIES,
@@ -11,7 +11,7 @@ import {
 
 /** El público solo ve los productos marcados como visibles; los dueños, todos. */
 const visibleOrOwner: Access = ({ req }) =>
-  req.user ? true : { isVisible: { equals: true } };
+  isOwnerRequest(req) ? true : { isVisible: { equals: true } };
 
 function slugify(text: string): string {
   return text

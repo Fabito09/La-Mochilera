@@ -1,23 +1,7 @@
 import type { CollectionBeforeChangeHook, CollectionConfig } from "payload";
-import { isOwner } from "@/backend/access";
-
-const COSTA_RICA_PROVINCES = [
-  "San José",
-  "Alajuela",
-  "Cartago",
-  "Heredia",
-  "Guanacaste",
-  "Puntarenas",
-  "Limón",
-];
-
-const ORDER_STATUSES = [
-  { label: "Pendiente de pago", value: "pendiente" },
-  { label: "Pagado", value: "pagado" },
-  { label: "Enviado", value: "enviado" },
-  { label: "Entregado", value: "entregado" },
-  { label: "Cancelado", value: "cancelado" },
-];
+import { CUSTOMERS_SLUG, isOwner, isOwnerOrOrderCustomer } from "@/backend/access";
+import { shippingAddressFields } from "@/backend/fields/shipping-address";
+import { ORDER_STATUSES } from "@/lib/order-status";
 
 interface OrderItem {
   quantity?: number | null;
@@ -46,7 +30,8 @@ export const Orders: CollectionConfig = {
     listSearchableFields: ["customerName", "phone", "email"],
   },
   access: {
-    read: isOwner,
+    // Un cliente con sesión iniciada ve sus propios pedidos en "Mi cuenta".
+    read: isOwnerOrOrderCustomer,
     create: isOwner,
     update: isOwner,
     delete: isOwner,
@@ -61,7 +46,7 @@ export const Orders: CollectionConfig = {
       type: "select",
       required: true,
       defaultValue: "pendiente",
-      options: ORDER_STATUSES,
+      options: [...ORDER_STATUSES],
       admin: { position: "sidebar" },
     },
     {
@@ -76,6 +61,16 @@ export const Orders: CollectionConfig = {
         { label: "Sitio web", value: "web" },
       ],
       admin: { position: "sidebar" },
+    },
+    {
+      name: "customer",
+      label: "Cuenta del cliente",
+      type: "relationship",
+      relationTo: CUSTOMERS_SLUG,
+      admin: {
+        position: "sidebar",
+        description: "Si la persona tiene cuenta en el sitio, el pedido le aparece en «Mi cuenta».",
+      },
     },
     {
       name: "trackingNumber",
@@ -112,26 +107,7 @@ export const Orders: CollectionConfig = {
             { label: "Retiro en el showroom", value: "retiro" },
           ],
         },
-        {
-          type: "row",
-          admin: { condition: (data) => data?.delivery === "envio" },
-          fields: [
-            {
-              name: "province",
-              label: "Provincia",
-              type: "select",
-              options: COSTA_RICA_PROVINCES.map((value) => ({ label: value, value })),
-            },
-            { name: "canton", label: "Cantón", type: "text" },
-            { name: "district", label: "Distrito", type: "text" },
-          ],
-        },
-        {
-          name: "address",
-          label: "Dirección exacta (otras señas)",
-          type: "textarea",
-          admin: { condition: (data) => data?.delivery === "envio" },
-        },
+        ...shippingAddressFields((data) => data?.delivery === "envio"),
       ],
     },
     {

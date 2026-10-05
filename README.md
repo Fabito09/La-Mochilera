@@ -29,7 +29,8 @@ Next.js lo exige.
 | `FRONTEND/lib/` | Lógica del sitio: catálogo, filtros, rutas de la tienda, formato de precios |
 | `BACKEND/` | Panel de administración (Payload) y base de datos |
 | `BACKEND/payload.config.ts` | Configuración del panel: base de datos Neon, fotos en Vercel Blob, ruta `/gestion-mochilera` |
-| `BACKEND/collections/` | Qué guarda el panel: productos (con inventario por talla), pedidos, fotos y dueños |
+| `BACKEND/collections/` | Qué guarda el panel: productos (con inventario por talla), pedidos, clientes (cuentas del sitio), fotos y dueños |
+| `BACKEND/access.ts` | Permisos: dueños (panel) y clientes (solo su cuenta y sus pedidos) |
 | `BACKEND/components/` | Piezas del panel: barra de secciones, pestañas por categoría, logo |
 | `BACKEND/migrations/` | Cambios de estructura de la base de datos (`npm run migrate`) |
 | `BACKEND/catalog-data.ts` | Cómo el sitio lee los productos de la base de datos |

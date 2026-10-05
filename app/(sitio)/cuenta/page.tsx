@@ -1,27 +1,23 @@
 import type { Metadata } from "next";
-import { NoticePage } from "@/components/page/notice-page";
-import { whatsappUrlWithMessage } from "@/content/marca";
-import { shopLink } from "@/content/navegacion";
-import { accountPage } from "@/content/paginas/utilitarias";
+import { CustomerAccount } from "@/components/account/customer-account";
+import { PageHeader } from "@/components/page/page-header";
+import { Container } from "@/components/ui/container";
+import { accountLinks } from "@/content/navegacion";
+import { accountPage } from "@/content/paginas/cuenta";
 
 export const metadata: Metadata = {
-  title: accountPage.eyebrow,
+  title: accountPage.title,
   description: accountPage.metaDescription,
   robots: { index: false },
 };
 
 export default function AccountPage() {
   return (
-    <NoticePage
-      eyebrow={accountPage.eyebrow}
-      title={accountPage.title}
-      intro={accountPage.intro}
-      primaryAction={{ label: "Ver la colección", href: shopLink.href }}
-      secondaryAction={{
-        label: "Consultar por WhatsApp",
-        href: whatsappUrlWithMessage("Hola, tengo una consulta sobre un pedido."),
-        isExternal: true,
-      }}
-    />
+    <main>
+      <PageHeader breadcrumbs={[accountLinks.account]} eyebrow={accountPage.eyebrow} title={accountPage.title} />
+      <Container className="pb-24 md:pb-32">
+        <CustomerAccount />
+      </Container>
+    </main>
   );
 }

@@ -65,6 +65,7 @@ export const mainLinks: NavLink[] = [
 export const accountLinks = {
   search: { label: "Buscar", href: "/buscar" },
   account: { label: "Mi cuenta", href: "/cuenta" },
+  register: { label: "Crear cuenta", href: "/cuenta/registro" },
   cart: { label: "Carrito", href: "/carrito" },
 } satisfies Record<string, NavLink>;
 

@@ -7,15 +7,31 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { es } from "@payloadcms/translations/languages/es";
 import { buildConfig } from "payload";
+import { Customers } from "@/backend/collections/customers";
 import { Media } from "@/backend/collections/media";
 import { Orders } from "@/backend/collections/orders";
 import { Products } from "@/backend/collections/products";
 import { Users } from "@/backend/collections/users";
+import { siteUrl } from "@/content/marca";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** Si se cambia, se renombra también la carpeta app/(payload)/gestion-mochilera. */
 const ADMIN_ROUTE = "/gestion-mochilera";
+
+/**
+ * Direcciones desde donde se aceptan sesiones (dueños y clientes). Una página
+ * de otro sitio no puede usar la sesión de alguien: segunda barrera además de
+ * las cookies SameSite. Incluye las versiones de prueba de Vercel y, fuera de
+ * Vercel, la compu de desarrollo.
+ */
+const TRUSTED_ORIGINS = [
+  siteUrl,
+  ...[process.env.VERCEL_URL, process.env.VERCEL_BRANCH_URL, process.env.VERCEL_PROJECT_PRODUCTION_URL]
+    .filter(Boolean)
+    .map((host) => `https://${host}`),
+  ...(process.env.VERCEL ? [] : ["http://localhost:3000", "http://localhost:3123"]),
+];
 
 export default buildConfig({
   admin: {
@@ -42,12 +58,13 @@ export default buildConfig({
   // Dirección poco obvia a propósito: los robots que buscan paneles prueban
   // /admin. La protección real es el inicio de sesión (ver BACKEND/collections/users.ts).
   routes: { admin: ADMIN_ROUTE },
-  collections: [Products, Orders, Media, Users],
+  collections: [Products, Orders, Customers, Media, Users],
   i18n: {
     supportedLanguages: { es },
     fallbackLanguage: "es",
   },
   secret: process.env.PAYLOAD_SECRET ?? "",
+  csrf: TRUSTED_ORIGINS,
   db: postgresAdapter({
     pool: { connectionString: process.env.DATABASE_URL },
     // Los cambios de estructura se aplican con migraciones (BACKEND/migrations),

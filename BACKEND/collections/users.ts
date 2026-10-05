@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload";
-import { isOwner } from "@/backend/access";
+import { OWNERS_SLUG, isOwner } from "@/backend/access";
 
 const MINUTE_IN_MS = 60 * 1000;
 const HOUR_IN_SECONDS = 60 * 60;
@@ -8,7 +8,7 @@ const HOUR_IN_SECONDS = 60 * 60;
 // público; el primer dueño se crea al abrir el panel por primera vez y los
 // demás los agrega un dueño desde el panel.
 export const Users: CollectionConfig = {
-  slug: "users",
+  slug: OWNERS_SLUG,
   labels: { singular: "Dueño", plural: "Dueños" },
   admin: {
     useAsTitle: "name",

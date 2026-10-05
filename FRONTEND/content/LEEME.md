@@ -21,6 +21,10 @@ el sitio se actualiza solo en unos segundos.
   (se ve tachada y no se puede elegir); vacío = no se lleva el control.
 - **Pedidos:** cliente, teléfono, dirección de envío, productos, estado y
   número de guía. El total se calcula solo.
+- **Clientes:** las cuentas que la gente crea en el sitio (`/cuenta`), con
+  sus datos de envío. Un cliente solo ve su propia cuenta y sus pedidos; nunca
+  entra al panel. Para que un pedido le aparezca en "Mi cuenta", elegir su
+  cuenta en el campo "Cuenta del cliente" del pedido.
 - **Dueños:** solo ellos entran; un dueño agrega a los demás.
 
 `productos.ts` quedó solo como respaldo de la carga inicial
@@ -50,7 +54,8 @@ el sitio se actualiza solo en unos segundos.
 | Preguntas frecuentes | `paginas/ayuda.ts` | `faqItems` |
 | Textos de contacto y guía de tallas | `paginas/ayuda.ts` | `contactPage`, `sizeGuidePage` |
 | Dirección y mapa del showroom | `marca.ts` | `brandInfo.showroom.address` y `mapUrl` |
-| Carrito, cuenta, búsqueda y página 404 | `paginas/utilitarias.ts` | El bloque de cada página |
+| Carrito, búsqueda y página 404 | `paginas/utilitarias.ts` | El bloque de cada página |
+| Textos de "Mi cuenta" y del registro | `paginas/cuenta.ts` | `accountPage`, `registerPage`, `accountErrors` |
 
 ## Tono de los textos
 
