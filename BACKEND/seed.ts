@@ -1,7 +1,7 @@
-// Carga inicial: pasa los productos de content/productos.ts (el catálogo de la
+// Carga inicial: pasa los productos de FRONTEND/content/productos.ts (el catálogo de la
 // Campaña 1) a la base de datos, con sus fotos. Se corre una sola vez:
 //
-//   npx payload run cms/seed.ts
+//   npx payload run BACKEND/seed.ts
 //
 // Si un producto ya existe (mismo código) lo salta, así que repetirlo no duplica.
 
@@ -17,7 +17,7 @@ if (!process.env.BLOB_READ_WRITE_TOKEN) {
 }
 
 const payload = await getPayload({ config });
-// Fuera del sitio no hay páginas que actualizar (ver cms/revalidate-site.ts).
+// Fuera del sitio no hay páginas que actualizar (ver BACKEND/revalidate-site.ts).
 // Cada llamada recibe un objeto nuevo: Payload anota cosas en el contexto
 // (p. ej. que la foto ya se subió) y reusarlo saltaría las subidas siguientes.
 const freshContext = () => ({ skipRevalidation: true });

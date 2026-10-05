@@ -14,7 +14,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { shopCategories, shopLink } from "@/content/navegacion";
-import { getProducts } from "@/lib/catalog-data";
+import { getProducts } from "@/backend/catalog-data";
 import {
   colorVariantsOf,
   findProductBySlug,

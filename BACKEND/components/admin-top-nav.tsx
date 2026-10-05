@@ -1,5 +1,5 @@
 import type { Payload } from "payload";
-import { AdminTopNavLinks, type AdminNavLink } from "@/cms/components/admin-top-nav-links";
+import { AdminTopNavLinks, type AdminNavLink } from "@/backend/components/admin-top-nav-links";
 
 interface AdminTopNavProps {
   payload: Payload;

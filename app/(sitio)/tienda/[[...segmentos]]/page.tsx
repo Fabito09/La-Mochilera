@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { catalogTexts } from "@/content/tienda";
 import { shopLink } from "@/content/navegacion";
-import { getProducts } from "@/lib/catalog-data";
+import { getProducts } from "@/backend/catalog-data";
 import { catalogStaticParams, resolveCatalogPage } from "@/lib/catalog-routes";
 
 // Solo existen las URLs que salen del menú de la tienda; el resto da 404.

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/content/marca";
 import { productHref } from "@/lib/catalog";
-import { getProducts } from "@/lib/catalog-data";
+import { getProducts } from "@/backend/catalog-data";
 import { catalogStaticParams } from "@/lib/catalog-routes";
 
 // Páginas fijas que conviene indexar (carrito, cuenta y búsqueda quedan fuera).

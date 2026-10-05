@@ -1,6 +1,6 @@
 import type { Access, CollectionConfig, FieldHook } from "payload";
-import { isOwner } from "@/cms/access";
-import { revalidateAfterChange, revalidateAfterDelete } from "@/cms/revalidate-site";
+import { isOwner } from "@/backend/access";
+import { revalidateAfterChange, revalidateAfterDelete } from "@/backend/revalidate-site";
 import {
   COLOR_FAMILIES,
   PRODUCT_BADGES,
@@ -39,7 +39,7 @@ export const Products: CollectionConfig = {
     listSearchableFields: ["name", "code", "colorName"],
     // Pestañas Todos / Botas / Accesorios / Gorros sobre la lista.
     components: {
-      beforeListTable: ["/cms/components/product-category-tabs#ProductCategoryTabs"],
+      beforeListTable: ["/components/product-category-tabs#ProductCategoryTabs"],
     },
   },
   access: {

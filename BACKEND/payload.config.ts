@@ -7,10 +7,10 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { es } from "@payloadcms/translations/languages/es";
 import { buildConfig } from "payload";
-import { Media } from "@/cms/collections/media";
-import { Orders } from "@/cms/collections/orders";
-import { Products } from "@/cms/collections/products";
-import { Users } from "@/cms/collections/users";
+import { Media } from "@/backend/collections/media";
+import { Orders } from "@/backend/collections/orders";
+import { Products } from "@/backend/collections/products";
+import { Users } from "@/backend/collections/users";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -25,11 +25,11 @@ export default buildConfig({
     theme: "light",
     components: {
       // Barra de secciones arriba, en lugar del menú lateral desplegable.
-      header: ["/cms/components/admin-top-nav#AdminTopNav"],
-      Nav: "/cms/components/admin-top-nav#HiddenSideNav",
+      header: ["/components/admin-top-nav#AdminTopNav"],
+      Nav: "/components/admin-top-nav#HiddenSideNav",
       graphics: {
-        Logo: "/cms/components/admin-graphics#AdminLogo",
-        Icon: "/cms/components/admin-graphics#AdminIcon",
+        Logo: "/components/admin-graphics#AdminLogo",
+        Icon: "/components/admin-graphics#AdminIcon",
       },
     },
     meta: {
@@ -40,7 +40,7 @@ export default buildConfig({
     },
   },
   // Dirección poco obvia a propósito: los robots que buscan paneles prueban
-  // /admin. La protección real es el inicio de sesión (ver cms/collections/users.ts).
+  // /admin. La protección real es el inicio de sesión (ver BACKEND/collections/users.ts).
   routes: { admin: ADMIN_ROUTE },
   collections: [Products, Orders, Media, Users],
   i18n: {
@@ -50,10 +50,10 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET ?? "",
   db: postgresAdapter({
     pool: { connectionString: process.env.DATABASE_URL },
-    // Los cambios de estructura se aplican con migraciones (cms/migrations),
+    // Los cambios de estructura se aplican con migraciones (BACKEND/migrations),
     // nunca automáticamente: la base de datos tiene datos reales del negocio.
     push: false,
-    migrationDir: path.resolve(dirname, "cms/migrations"),
+    migrationDir: path.resolve(dirname, "migrations"),
   }),
   plugins: [
     vercelBlobStorage({
@@ -66,5 +66,5 @@ export default buildConfig({
     }),
   ],
   graphQL: { disable: true },
-  typescript: { outputFile: path.resolve(dirname, "cms/payload-types.ts") },
+  typescript: { outputFile: path.resolve(dirname, "payload-types.ts") },
 });

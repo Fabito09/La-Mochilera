@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page/page-header";
 import { ProductSearch } from "@/components/search/product-search";
 import { Container } from "@/components/ui/container";
 import { searchPage } from "@/content/paginas/utilitarias";
-import { getProducts } from "@/lib/catalog-data";
+import { getProducts } from "@/backend/catalog-data";
 
 export const metadata: Metadata = {
   title: searchPage.title,

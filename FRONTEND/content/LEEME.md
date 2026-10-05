@@ -24,7 +24,7 @@ el sitio se actualiza solo en unos segundos.
 - **Dueños:** solo ellos entran; un dueño agrega a los demás.
 
 `productos.ts` quedó solo como respaldo de la carga inicial
-(`cms/seed.ts`); cambiarlo ya no cambia el sitio.
+(`BACKEND/seed.ts`); cambiarlo ya no cambia el sitio.
 
 ## Qué archivo cambiar
 

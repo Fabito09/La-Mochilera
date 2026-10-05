@@ -1,5 +1,5 @@
 import type { CollectionBeforeChangeHook, CollectionConfig } from "payload";
-import { isOwner } from "@/cms/access";
+import { isOwner } from "@/backend/access";
 
 const COSTA_RICA_PROVINCES = [
   "San José",

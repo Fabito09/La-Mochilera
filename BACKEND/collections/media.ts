@@ -1,6 +1,6 @@
 import type { CollectionConfig } from "payload";
-import { isOwner, isPublic } from "@/cms/access";
-import { revalidateAfterChange, revalidateAfterDelete } from "@/cms/revalidate-site";
+import { isOwner, isPublic } from "@/backend/access";
+import { revalidateAfterChange, revalidateAfterDelete } from "@/backend/revalidate-site";
 
 // Fotos que se suben desde el panel. El sitio las optimiza al mostrarlas
 // (next/image), así que aquí se guarda solo el original.

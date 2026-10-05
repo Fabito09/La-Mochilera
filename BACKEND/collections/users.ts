@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload";
-import { isOwner } from "@/cms/access";
+import { isOwner } from "@/backend/access";
 
 const MINUTE_IN_MS = 60 * 1000;
 const HOUR_IN_SECONDS = 60 * 60;

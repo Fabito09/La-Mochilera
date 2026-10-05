@@ -1,12 +1,12 @@
 // Lectura de productos desde la base de datos (los cargan los dueños en el
 // panel, /gestion-mochilera).
 // Solo se usa en el servidor: las páginas la llaman y pasan los productos ya
-// convertidos al formato del sitio (`Product` de lib/catalog.ts).
+// convertidos al formato del sitio (`Product` de FRONTEND/lib/catalog.ts).
 
 import { cache } from "react";
 import config from "@payload-config";
 import { getPayload } from "payload";
-import type { Media, Product as ProductDocument } from "@/cms/payload-types";
+import type { Media, Product as ProductDocument } from "@/backend/payload-types";
 import type { Product, ProductImage } from "@/lib/catalog";
 
 function toProductImage(image: number | Media): ProductImage[] {

@@ -15,15 +15,27 @@ Para SEO en producción, copiar `.env.example` a `.env.local` y poner el dominio
 
 ## Estructura
 
+Es una sola aplicación Next.js (un solo proyecto en Vercel): el sitio y el
+panel de administración viven juntos. El código está ordenado en dos carpetas;
+`app/`, `public/` y los archivos de configuración se quedan en la raíz porque
+Next.js lo exige.
+
 | Carpeta | Contenido |
 |---------|-----------|
-| `app/` | Páginas (App Router), `layout.tsx` y `globals.css` con los tokens de tema |
-| `components/ui/` | Componentes base estilo shadcn (Button, hero, placeholders) |
-| `components/layout/` | Piezas del sitio: header, mega menú, menú móvil, barra de anuncio, footer |
-| `components/home/`, `components/catalog/`, `components/product/` | Secciones del inicio, del catálogo y de la ficha de producto |
-| `content/` | **Contenido editable sin tocar el diseño**: productos, textos, fotos, contacto. Ver [content/LEEME.md](content/LEEME.md) |
-| `hooks/` | Hooks de cliente (scroll, video de fondo) |
-| `lib/` | Lógica: catálogo, filtros, rutas de la tienda, formato de precios |
+| `FRONTEND/` | Lo que ve el cliente en el sitio |
+| `FRONTEND/components/` | Piezas visuales: `ui/` (base estilo shadcn), `layout/` (header, menús, footer), `home/`, `catalog/`, `product/`, `page/` |
+| `FRONTEND/content/` | **Textos y fotos editables sin tocar el diseño**. Ver [FRONTEND/content/LEEME.md](FRONTEND/content/LEEME.md) |
+| `FRONTEND/hooks/` | Hooks de cliente (scroll, video de fondo) |
+| `FRONTEND/lib/` | Lógica del sitio: catálogo, filtros, rutas de la tienda, formato de precios |
+| `BACKEND/` | Panel de administración (Payload) y base de datos |
+| `BACKEND/payload.config.ts` | Configuración del panel: base de datos Neon, fotos en Vercel Blob, ruta `/gestion-mochilera` |
+| `BACKEND/collections/` | Qué guarda el panel: productos (con inventario por talla), pedidos, fotos y dueños |
+| `BACKEND/components/` | Piezas del panel: barra de secciones, pestañas por categoría, logo |
+| `BACKEND/migrations/` | Cambios de estructura de la base de datos (`npm run migrate`) |
+| `BACKEND/catalog-data.ts` | Cómo el sitio lee los productos de la base de datos |
+| `BACKEND/seed.ts` | Carga inicial de productos (`npx payload run BACKEND/seed.ts`) |
+| `app/` | Rutas: `(sitio)/` las páginas públicas, `(payload)/` el panel; `globals.css` con los tokens de tema |
+| `public/` | Fotos, videos y logos de la marca |
 | `docs/` | Planificación y lista de material requerido |
 | `material-marca/` | Originales de la marca (no se suben a git) |
 

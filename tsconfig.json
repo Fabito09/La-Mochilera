@@ -19,8 +19,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@payload-config": ["./payload.config.ts"]
+      "@/components/*": ["./FRONTEND/components/*"],
+      "@/hooks/*": ["./FRONTEND/hooks/*"],
+      "@/content/*": ["./FRONTEND/content/*"],
+      "@/lib/*": ["./FRONTEND/lib/*"],
+      "@/backend/*": ["./BACKEND/*"],
+      "@payload-config": ["./BACKEND/payload.config.ts"]
     }
   },
   "include": [
